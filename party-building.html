@@ -1,0 +1,1831 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>党建学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        red: {
+                            primary: '#D22128',
+                            secondary: '#E64340',
+                            accent: '#F5A623',
+                            light: '#FFEBEB'
+                        },
+                        gold: {
+                            primary: '#FFD700',
+                            secondary: '#D4AF37',
+                            accent: '#B8860B'
+                        },
+                        gray: {
+                            light: '#F5F5F5',
+                            medium: '#E0E0E0',
+                            dark: '#333333'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif']
+                    },
+                    boxShadow: {
+                        'red': '0 4px 6px -1px rgba(210, 33, 40, 0.1), 0 2px 4px -1px rgba(210, 33, 40, 0.06)',
+                        'gold': '0 4px 6px -1px rgba(255, 215, 0, 0.1), 0 2px 4px -1px rgba(255, 215, 0, 0.06)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .text-shadow-lg {
+                text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            }
+            .bg-gradient-red {
+                background: linear-gradient(135deg, #D22128 0%, #E64340 100%);
+            }
+            .bg-gradient-gold {
+                background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: scale(1.05);
+            }
+            .card-shadow {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                transition: box-shadow 0.3s ease;
+            }
+            .card-shadow:hover {
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-light text-gray-dark">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-red-primary flex items-center justify-center mr-3">
+                        <i class="fa fa-star text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold text-red-primary">党建引领科技</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="font-medium text-red-primary hover:text-red-secondary transition-colors">首页</a>
+                    <a href="#news" class="font-medium text-gray-dark hover:text-red-secondary transition-colors">最新要闻</a>
+                    <a href="#theory" class="font-medium text-gray-dark hover:text-red-secondary transition-colors">研学启程</a>
+                    <a href="#mobile-menu" class="font-medium text-gray-dark hover:text-red-secondary transition-colors">现场研学</a>
+                    <a href="#activities" class="font-medium text-gray-dark hover:text-red-secondary transition-colors">研学成果</a>
+                    <a href="#contact" class="font-medium text-gray-dark hover:text-red-secondary transition-colors">联系我们</a>
+                </div>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menuBtn" class="md:hidden text-gray-dark hover:text-red-primary">
+                    <i class="fa fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white border-t">
+            <div class="container mx-auto px-4 py-2">
+                <a href="#home" class="block py-3 font-medium text-red-primary hover:bg-red-light hover:px-2 transition-all">首页</a>
+                <a href="#news" class="block py-3 font-medium text-gray-dark hover:text-red-primary hover:bg-red-light hover:px-2 transition-all">党建要闻</a>
+                <a href="#theory" class="block py-3 font-medium text-gray-dark hover:text-red-primary hover:bg-red-light hover:px-2 transition-all">理论学习</a>
+                <a href="#practice" class="block py-3 font-medium text-gray-dark hover:text-red-primary hover:bg-red-light hover:px-2 transition-all">现场研学</a>
+                <a href="#activities" class="block py-3 font-medium text-gray-dark hover:text-red-primary hover:bg-red-light hover:px-2 transition-all">支部活动</a>
+                <a href="#contact" class="block py-3 font-medium text-gray-dark hover:text-red-primary hover:bg-red-light hover:px-2 transition-all">联系我们</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 首页/英雄区域 -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-red-light opacity-50 z-0"></div>
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-red-primary/5 -skew-x-12 transform origin-top-right z-0"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-red-primary mb-6">
+                        不忘初心<br><span class="text-gray-dark">走进C919</span>
+                    </h1>
+                    <p class="text-xl text-gray-dark mb-8 max-w-lg">科技强国，走进C919主题党建研学活动。感悟大国重器，激发使命担当，凝聚奋进力量。</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#news" class="px-8 py-3 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">
+                            最新要闻
+                        </a>
+                        <a href="#theory" class="px-8 py-3 bg-white text-red-primary border border-red-primary rounded-md hover:bg-red-light transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 duration-300">理论学习</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="bg-white rounded-xl shadow-2xl overflow-hidden hover-scale">
+                        <img src="https://p3-search.byteimg.com/obj/labis/064d98cda713948823ea386e3bf333bf" alt="党员学习活动照片" class="w-full h-auto">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                            <div class="p-6">
+                                <a href="https://www.baidu.com/link?url=-Arr41edTy-Mh2AqEhiXjNwexr7Dw9be73BMUflakfDAxWSEkYIslYKSclp85lvbp9kWdoAFJKLnY5TiO9pdQFT6aawa-LC8r61GcPBD3YB4KUeHEGKe2d5v8AZEsSzIDej_8NR-L2I3jH3duD-G_K&amp;wd=&amp;eqid=aa82102c00023999000000036881dbd4" target="_blank" class="text-white text-xl font-bold mb-2 block">国产大飞机C919研制历程</a>
+                                <p class="text-white/80">传承红色基因，牢记初心使命</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gold-primary rounded-full opacity-20 z-[-1]"></div>
+                    <div class="absolute -top-6 -right-6 w-40 h-40 bg-red-primary rounded-full opacity-20 z-[-1]"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 党建要闻 -->
+    <section id="news" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-red-primary mb-4">最新要闻</h2>
+                <div class="w-20 h-1 bg-red-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 新闻卡片 1 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/2bb373e0187f4268b1a7716f8207322a~tplv-a9rns2rl98-image.image?rcl=2025080602070440815594D273607915D1&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1755022024&amp;x-signature=zMcfyAxuBqVdRCrYqIoGp1MAQxE%3D" alt="习近平总书记重要讲话" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-dark mb-3">
+                            <i class="fa fa-calendar-o mr-2 text-red-primary"></i>
+                            <span></span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary hover:text-red-secondary transition-colors">
+                            <a href="#">弘扬奋斗精神，激发使命担当</a>
+                        </h3>
+                        <p class="text-gray-dark mb-4 line-clamp-3">学习航空人”长期奋斗、长期攻关、长期吃苦、长期奉献“的航空报国精神，激发党员干部干事创业的内生动力和担当作为使命感</p>
+                        <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 新闻卡片 2 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <img src="https://p3-search.byteimg.com/obj/labis/33cc1d9630c260fda4b78df6c9c750a0" alt="党史学习教育活动" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-dark mb-3">
+                            <i class="fa fa-calendar-o mr-2 text-red-primary"></i>
+                            <span>2025年6月5日</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary hover:text-red-secondary transition-colors">
+                            <a href="#">坚持理想信念，坚定四个自信</a>
+                        </h3>
+                        <p class="text-gray-dark mb-4 line-clamp-3">6月4日22时21分，中国南方航空由国产大飞机C919执飞的CZ3383次航班从广州白云国际机场起飞，国产大飞机商业运营再添新航线。</p>
+                        <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 新闻卡片 3 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/96f73a3760e54ad1b68a0bc6a1b92298~tplv-a9rns2rl98-image.image?rcl=202508060204535268583EAA002B5099C2&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1755021894&amp;x-signature=vQPqvslO7jogDyvzmDXqVSHK%2B0c%3D" alt="党风廉政建设会议" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-dark mb-3">
+                            <i class="fa fa-calendar-o mr-2 text-red-primary"></i>
+                            <span>2025年8月2日</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary hover:text-red-secondary transition-colors">
+                            <a href="#">强化团队沟通，提升战斗凝聚力</a>
+                        </h3>
+                        <p class="text-gray-dark mb-4 line-clamp-3">C919大飞机有了国产心！中国工程院院士张彦仲在央视专访中透露，国产CJ-1000A航空发动机研发进展顺利！</p>
+                        <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- 新闻卡片 4 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3e0af935cafc462b8208cc613dfaf99d~tplv-a9rns2rl98-image.image?rcl=202508060211474B01D06C9418970469D3&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1755022308&amp;x-signature=Z3Cb%2BlZI8BrIz5wIpt%2FSKOLXahU%3D" alt="党风廉政建设会议" class="w-full h-56 object-cover">
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-dark mb-3">
+                            <i class="fa fa-calendar-o mr-2 text-red-primary"></i>
+                            <span>2025年8月5日</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary hover:text-red-secondary transition-colors">
+                            <a href="#">拓展视野格局，服务发展大局</a>
+                        </h3>
+                        <p class="text-gray-dark mb-4 line-clamp-3">官宣好消息，国产CJ-1000发动机年底完成适航，C919即将换上”国产心“。</p>
+                        <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                </div>
+              
+            <div class="text-center mt-10">
+                <a href="#" class="inline-block px-8 py-3 bg-white text-red-primary border border-red-primary rounded-md hover:bg-red-light transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300">
+                    查看更多新闻 <i class="fa fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 理论学习 -->
+    <section id="theory" class="py-16 bg-red-light/30">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-red-primary mb-4">研学启程&amp;理论学习</h2>
+                <div class="w-20 h-1 bg-red-primary mx-auto"></div>
+                <p class="mt-4 text-gray-dark max-w-2xl mx-auto">深入学习C919研制背景与意义，加强青少年航空理念的理论修养和航空报国精神的政治素养</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 理论学习卡片 1 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <div class="h-3 bg-gradient-red"></div>
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-book text-2xl text-red-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary">《党建引领·大国航空》学习手册</h3>
+                        <p class="text-gray-dark mb-4">活动议程、C919研制背景与意义、航空报国精神解读、相关重要论述摘编、思考题。</p>
+                         <a href="#practice" class="inline-block px-6 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">领取手册</a>
+                    </div>
+                </div>
+                
+                <!-- 理论学习卡片 2 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <div class="h-3 bg-gradient-red"></div>
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-file-text-o text-2xl text-red-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary">主题讲座《从”运十“到C919：中国民用航空工业的自主创新之路与党的领导》</h3>
+                        <p class="text-gray-dark mb-4">深刻领会主题，深刻领会”运十“到C919中国民用航空工业自主创新的伟大变革。</p>
+                         <a href="#practice" class="inline-block px-6 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">预约讲座</a>
+                        
+                    </div>
+                </div>
+                
+                <!-- 理论学习卡片 3 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <div class="h-3 bg-gradient-red"></div>
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-university text-2xl text-red-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary">专题学习</h3>
+                        <p class="text-gray-dark mb-4">学习关于科技强国、制造强国、人才强国的重要论述精神。</p>
+                        <a href="#practice" class="inline-block px-6 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">学习专题</a>
+                        
+                    </div>
+                </div>
+                
+                <!-- 理论学习卡片 4 -->
+                <div class="bg-white rounded-xl overflow-hidden card-shadow hover-scale">
+                    <div class="h-3 bg-gradient-red"></div>
+                    <div class="p-6 text-center">
+                        <div class="w-16 h-16 rounded-full bg-red-primary/10 flex items-center justify-center mx-auto mb-4">
+                            <i class="fa fa-comments-o text-2xl text-red-primary"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-red-primary">分组研讨</h3>
+                        <p class="text-gray-dark mb-4">围绕”如何在本职工作中践行航空报国精神/创新精神“进行初步讨论。</p>
+                        <a href="#practice" class="inline-block px-6 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">进入讨论</a>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习资料 -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-red-primary mb-6">全国最新学习资料</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- 资料卡片 1 -->
+                    <div class="bg-white rounded-lg p-6 flex items-start card-shadow hover-scale">
+                        <div class="w-12 h-12 rounded bg-red-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fa fa-file-pdf-o text-red-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <a href="https://news.cnr.cn/native/gd/sz/20230804/t20230804_526362867.shtml" target="_blank" rel="noopener noreferrer">《习近平谈治国理政》第四卷</a>
+                            <p class="text-gray-dark mb-3 text-sm">深入学习贯彻习近平新时代中国特色社会主义思想</p>
+                            <div class="flex items-center text-sm text-gray-dark">
+                                <span class="mr-4"><i class="fa fa-clock-o mr-1"></i> 2025-06-20</span>
+                                <span><i class="fa fa-download mr-1"></i> 2,345</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 资料卡片 2 -->
+                    <div class="bg-white rounded-lg p-6 flex items-start card-shadow hover-scale">
+                        <div class="w-12 h-12 rounded bg-red-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fa fa-file-word-o text-red-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <a href="http://www.qstheory.cn/yaowen/2022-10/30/c_1129088533.htm" target="_blank" rel="noopener noreferrer">党的二十大报告学习辅导百问</a>
+                            <p class="text-gray-dark mb-3 text-sm">党的二十大精神学习权威辅导材料</p>
+                            <div class="flex items-center text-sm text-gray-dark">
+                                <span class="mr-4"><i class="fa fa-clock-o mr-1"></i> 2025-06-15</span>
+                                <span><i class="fa fa-download mr-1"></i> 1,876</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 资料卡片 3 -->
+                    <div class="bg-white rounded-lg p-6 flex items-start card-shadow hover-scale">
+                        <div class="w-12 h-12 rounded bg-red-primary/10 flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fa fa-file-powerpoint-o text-red-primary text-xl"></i>
+                        </div>
+                        <div>
+                            <a href="https://www.news.cn/politics/20250719/5cd18f4a19924410a2e7764a072f5bc8/c.html" target="_blank" rel="noopener noreferrer">2025年党风廉政建设培训课件</a>
+                            <p class="text-gray-dark mb-3 text-sm">加强党风廉政建设，筑牢拒腐思想防线</p>
+                            <div class="flex items-center text-sm text-gray-dark">
+                                <span class="mr-4"><i class="fa fa-clock-o mr-1"></i> 2025-07-05</span>
+                                <span><i class="fa fa-download mr-1"></i> 1,234</span>
+        
+             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>党建文化展示平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-primary': '#C92127',
+                        'red-secondary': '#A61C21',
+                        'gray-light': '#F8F9FA',
+                        'gray-dark': '#6C757D',
+                        'blue-primary': '#0D6EFD',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: translateY(-5px);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #C92127 0%, #A61C21 100%);
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .animate-float {
+                animation: float 3s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-10px); }
+                100% { transform: translateY(0px); }
+            }
+        }
+    </style>
+
+
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menu-toggle" class="md:hidden text-gray-dark focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-3">
+                <a href="#home" class="block py-2 text-red-primary font-medium">首页</a>
+                <a href="#achievements" class="block py-2 text-gray-dark font-medium hover:text-red-primary">感悟成就</a>
+                <a href="#experiences" class="block py-2 text-gray-dark font-medium hover:text-red-primary">沉浸体验</a>
+                <a href="#organizations" class="block py-2 text-gray-dark font-medium hover:text-red-primary">组织生活</a>
+                <a href="#news" class="block py-2 text-gray-dark font-medium hover:text-red-primary">党建要闻</a>
+                <a href="#contact" class="block py-2 text-gray-dark font-medium hover:text-red-primary">联系我们</a>
+            </div>
+        
+    
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-20 relative h-[70vh] min-h-[500px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/cbbc01c7a9704c7ea973b4fc7b2337e0~tplv-a9rns2rl98-image.image?rcl=202508051559173623082D939A912BC7DF&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985558&amp;x-signature=jC2MgdMjJPvRGS8w5dFKx2%2B%2Fdhw%3D" alt="党建活动背景" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/30"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white leading-tight text-shadow mb-4">
+                    感悟成就·文化浸润<br>
+                    <span class="text-red-primary">沉浸体验·精神传承</span>
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 text-shadow">
+                    深入学习贯彻党的二十大精神，推动党建工作高质量发展，科技是第一生产力，人才是第一资源，创新是第一动力
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#achievements" class="px-8 py-3 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-all shadow-lg hover:shadow-xl">
+                        开始学习 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-3 bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-md hover:bg-white/30 transition-all">
+                        联系我们 <i class="fa fa-envelope ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 波浪装饰 -->
+        <div class="absolute bottom-0 left-0 w-full">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" class="w-full h-auto">
+                <path fill="#F8F9FA" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-primary mb-2 counter" data-target="325">0</div>
+                    <p class="text-gray-dark">党建活动</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-primary mb-2 counter" data-target="12000">0</div>
+                    <p class="text-gray-dark">参与人次</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-primary mb-2 counter" data-target="56">0</div>
+                    <p class="text-gray-dark">专题学习</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl font-bold text-red-primary mb-2 counter" data-target="98">0</div>
+                    <p class="text-gray-dark">基层党组织</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 感悟成就·文化浸润 -->
+    <section id="achievements" class="py-20 bg-gray-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">感悟成就·文化浸润</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">深入了解国产航空制造光辉历程和伟大成就，传承红色基因，践行强国志向。</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 成就卡片 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                    <div class="relative h-56">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/7bbeaed06fc041f59b1bd5c2700b7191~tplv-a9rns2rl98-image.image?rcl=2025080516000320F2BE0813CF0A15913E&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985604&amp;x-signature=iAScH%2BHmACHetLy56m4WZ4FU1Po%3D" alt="党的二十大会议现场" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">成就展示</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-red-primary mb-3">”大国之翼“主题文化展厅导览</h3>
+                        <p class="text-gray-dark mb-4">专业讲解，参观C919项目在党的领导下，攻坚克难，全国大协作，实现历史性突破的历程展区，了解战略意义及技术亮点。</p>
+                        <a href="http://www.12371.cn/2022/10/26/ART1666754615293081.shtml" target="_blank" rel="noopener noreferrer" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 成就卡片 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                    <div class="relative h-56">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/5be606cf9917466095acddbdc254dbfc~tplv-a9rns2rl98-image.image?rcl=20250805160019CB99B43370E054FF0A82&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985619&amp;x-signature=mRLQG5PJX8dUsy6pqAGcxiPAG9c%3D" alt="科技成就展示" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="bg-blue-primary/90 text-white text-xs px-3 py-1 rounded-full">科技创新</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-red-primary mb-3">”创新之光“互动体验区</h3>
+                        <p class="text-gray-dark mb-4">通过高科技互动装置，体验航空科技魅力。飞机结构原理展示、空气动力学实验、材料科学应用等，直观感受科技创新的力量。</p>
+                        <a href="http://www.12371.cn/special/xxd20tgzs/" target="_blank" rel="noopener noreferrer" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- 成就卡片 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                    <div class="relative h-56">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/ce92cd4da46d46a3b0d8b30c6cd266e0~tplv-a9rns2rl98-image.image?rcl=202508051600309841040FE78FFD2A3817&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985631&amp;x-signature=wuLokSW%2FbsQcO0S0bZbU8aU%2Fpyc%3D" alt="文化传承活动" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">文化传承</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-red-primary mb-3">优秀传统文化传承</h3>
+                        <p class="text-gray-dark mb-4">弘扬中华优秀传统文化，传承红色基因，坚定文化自信，为实现中华民族伟大复兴的中国梦提供强大精神动力。</p>
+                        <a href="http://www.qstheory.cn/zhuanqu/2022-10/27/c_1129097742.htm" target="_blank" rel="noopener noreferrer" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center">
+                            阅读全文 <i class="fa fa-angle-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 时间轴 -->
+            <div class="mt-20 relative">
+                <h3 class="text-2xl font-bold text-red-primary mb-10 text-center">党领导下C919项目的光辉历程</h3>
+                
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-red-primary/20"></div>
+                
+                <div class="timeline-container">
+                    <!-- 时间点 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content right">
+                            <div class="bg-white p-6 rounded-lg shadow-card hover:shadow-card-hover">
+                                <div class="flex items-center mb-4">
+                                    <span class="bg-red-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">1</span>
+                                    <h4 class="font-bold text-xl text-red-primary">确立重大科技专项</h4>
+                                </div>
+                                <p class="text-gray-dark">2006年2月9日，国务院发布《国家中长期科学和技术发展规划纲要》，大型飞机重大专项被确定为16个重大科技专项之一</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间点 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content left">
+                            <div class="bg-white p-6 rounded-lg shadow-card hover:shadow-card-hover">
+                                <div class="flex items-center mb-4">
+                                    <span class="bg-red-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">2</span>
+                                    <h4 class="font-bold text-xl text-red-primary">中国商飞成立</h4>
+                                </div>
+                                <p class="text-gray-dark">2008年5月11日，中国商飞公司成立，次年正式发布首个单通道常规布局150座级大型客机，机型代号COMAC919。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间点 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content right">
+                            <div class="bg-white p-6 rounded-lg shadow-card hover:shadow-card-hover">
+                                <div class="flex items-center mb-4">
+                                    <span class="bg-red-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">3</span>
+                                    <h4 class="font-bold text-xl text-red-primary">面向新时代</h4>
+                                </div>
+                                <p class="text-gray-dark">2022年12月9日，中国民航局向中国商飞公司颁发C919大型客机交付中国东方航空。</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 时间点 4 -->
+                    <div class="timeline-item">
+                        <div class="timeline-content left">
+                            <div class="bg-white p-6 rounded-lg shadow-card hover:shadow-card-hover">
+                                <div class="flex items-center mb-4">
+                                    <span class="bg-red-primary text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">4</span>
+                                    <h4 class="font-bold text-xl text-red-primary">最新数据</h4>
+                                </div>
+                                <p class="text-gray-dark">截至目前，中国商飞已累计交付20架C919飞机和165架C909飞机。2025年以来，新增老挝航空、越南航空两家客户并投入商业运营。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 沉浸体验·精神传承 -->
+    <section id="experiences" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">沉浸体验·精神传承</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">通过互动体验、VR展示和红色科研教育基地，沉浸式感受中国制造的大国重器精神力量</p>
+            </div>
+            
+            <!-- 3D轮播 -->
+            <div class="relative mb-20">
+                <div class="carousel-container overflow-hidden">
+                    <div class="carousel-track flex transition-transform duration-500 ease-out">
+                        <!-- 轮播项 1 -->
+                        <div class="carousel-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale h-full">
+                                <div class="relative h-64">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/eecd642395bb4c6cb1b50e48ad0b4b94~tplv-a9rns2rl98-image.image?rcl=202508051615559128FC68E1779C5B2B5A&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754986555&amp;x-signature=dnkoLs5GuIUDvx2qPdSW9Id640w%3D" alt="VR党建体验" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">升级体验</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-red-primary mb-3">”国之重器·匠心铸就“C919模拟舱参观</h3>
+                                    <p class="text-gray-dark mb-4">专业讲解，模拟舱如何体现”中国设计、中国制造“的集成创新,党组织在项目中的关键作用。</p>
+                                    <button class="mt-2 px-4 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                        开始体验 <i class="fa fa-vr-cardboard ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 轮播项 2 -->
+                        <div class="carousel-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale h-full">
+                                <div class="relative h-64">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/8429f8aee9444b8eaddc0f7eab86577e~tplv-a9rns2rl98-image.image?rcl=20250805161706929B7A3AAF4DC7170604&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754986628&amp;x-signature=vo5HmgtcE5z5EdOCKh6b76O0dfI%3D" alt="红色故事分享" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">主题课程</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-red-primary mb-3">”鹰眼如炬，匠心传承“-国产民机发展史与匠心精神课</h3>
+                                    <p class="text-gray-dark mb-4">结合事物、模型、影像，讲述中国民机发展历程中的曲折与辉煌，航空工匠精神的内涵与时代价值。</p>
+                                    <button class="mt-2 px-4 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                        主题课程 <i class="fa fa-headphones ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 轮播项 3 -->
+                        <div class="carousel-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale h-full">
+                                <div class="relative h-64">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/16bdf70ab1f4469c876b872b90161539~tplv-a9rns2rl98-image.image?rcl=2025080516175129BD9A0ACDF4993E784C&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754986672&amp;x-signature=vGSkXLiaxPEyakJxWo5ODYvPyEQ%3D" alt="党建知识竞赛" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full"></span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-red-primary mb-3">蓝天铸魂·团队熔炼-航空主题协作挑战课</h3>
+                                    <p class="text-gray-dark mb-4">设计模拟航空应急响应、任务协同等场景的团队拓展活动，如模拟机务协作、航路规划协作，强化沟通、新人、执行力与集体荣誉感。</p>
+                                    <button class="mt-2 px-4 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                        开始挑战 <i class="fa fa-trophy ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 轮播项 4 -->
+                        <div class="carousel-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale h-full">
+                                <div class="relative h-64">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/64e61f12fe0e4fb69adea6cbdfc13190~tplv-a9rns2rl98-image.image?rcl=2025080516192229BD9A0ACDF4993EAD10&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754986764&amp;x-signature=YbZeTWmVf2YvVVRq56NqzOhEfnw%3D" alt="线上党课" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">创新引擎</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-red-primary mb-3">创新引擎·驱动未来-航空强国战略研讨课</h3>
+                                    <p class="text-gray-dark mb-4">聚焦C919产业链、面临的挑战与机遇，结合二十大精神与新质生产力要求，深入研讨如何立足岗位，服务国家科技创新战略。</p>
+                                    <button class="mt-2 px-4 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                        开始学习 <i class="fa fa-play-circle ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 轮播项 5 -->
+                        <div class="carousel-slide min-w-full md:min-w-[50%] lg:min-w-[33.333%] p-4">
+                            <div class="bg-gray-light rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale h-full">
+                                <div class="relative h-64">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/41a7f4793e8c4ee79459c8aad17e8f9c~tplv-a9rns2rl98-image.image?rcl=20250805161943ECB654DBF81E203B3777&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754986786&amp;x-signature=ABBntUNJqm3W5PSRUmZAmSqIs%2Bs%3D" alt="党建知识竞赛" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                                    <div class="absolute bottom-4 left-4 text-white">
+                                        <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">升级体验</span>
+                                    </div>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="font-bold text-xl text-red-primary mb-3">云端领航·使命在肩-模拟飞行与机组资源管理体验课</h3>
+                                    <p class="text-gray-dark mb-4">在专业教员指导下，进行基础模拟飞行操作体验，理解飞行员/机组在复杂环境下的决策、沟通、协作，党员干部在复杂局面下的领导力担当。</p>
+                                    <button class="mt-2 px-4 py-2 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                        开始挑战 <i class="fa fa-trophy ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 轮播控制按钮 -->
+                <button class="carousel-prev absolute top-1/2 left-2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-red-primary hover:bg-red-primary hover:text-white transition-colors z-10">
+                    <i class="fa fa-angle-left"></i>
+                </button>
+                <button class="carousel-next absolute top-1/2 right-2 transform -translate-y-1/2 w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-red-primary hover:bg-red-primary hover:text-white transition-colors z-10">
+                    <i class="fa fa-angle-right"></i>
+                </button>
+                
+                <!-- 轮播指示器 -->
+                <div class="carousel-indicators flex justify-center mt-6 space-x-2">
+                    <button class="w-3 h-3 rounded-full bg-red-primary/30 indicator-active"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300"></button>
+                </div>
+            </div>
+            
+            <!-- 红色教育基地地图 -->
+            <div class="bg-gray-light rounded-xl p-6 shadow-card">
+                <h3 class="text-2xl font-bold text-red-primary mb-6">全国C919航空强国&amp;红色教育基地分布</h3>
+                <div class="relative h-[400px] bg-white rounded-lg overflow-hidden shadow-inner">
+                    <!-- 地图占位 -->
+                    <img src="https://picsum.photos/id/1018/1200/400" alt="全国红色教育基地分布图" class="w-full h-full object-cover">
+                    
+                    <!-- 地图标记点 -->
+                    <div class="absolute top-[30%] left-[25%] animate-float">
+                        <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center cursor-pointer" title="井冈山革命博物馆">
+                            <i class="fa fa-map-marker text-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute top-[40%] left-[40%] animate-float" style="animation-delay: 0.5s">
+                        <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center cursor-pointer" title="延安革命纪念馆">
+                            <i class="fa fa-map-marker text-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute top-[25%] left-[60%] animate-float" style="animation-delay: 1s">
+                        <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center cursor-pointer" title="西柏坡纪念馆">
+                            <i class="fa fa-map-marker text-white"></i>
+                        </div>
+                    </div>
+                    <div class="absolute top-[50%] left-[75%] animate-float" style="animation-delay: 1.5s">
+                        <div class="w-6 h-6 bg-red-primary rounded-full flex items-center justify-center cursor-pointer" title="古田会议纪念馆">
+                            <i class="fa fa-map-marker text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 组织生活·思想升华 -->
+    <section id="organizations" class="py-20 bg-gray-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">组织生活·思想升华</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">丰富党组织生活形式，增强党组织凝聚力，提升党员思想觉悟</p>
+            </div>
+            
+            <!-- 卡片网格 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <!-- 左侧卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover">
+                    <div class="relative h-64">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c1db757bd3294f16968026f683ab2c3d~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1754075951&amp;x-signature=E7USFzvRJVIWfJYBMxXTGvCVs6E%3D" alt="组织生活" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">主题党日</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-red-primary mb-4">主题党日活动</h3>
+                        <p class="text-gray-dark mb-4">党组织生活是党的生活的重要内容，是党组织对党员进行教育、管理、监督的重要形式。</p>
+                        
+                        <!-- 活动列表 -->
+                        <div class="space-y-4">
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4">
+                                    <i class="fa fa-calendar text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">主题党日活动</h4>
+                                    <p class="text-sm text-gray-dark">重温入党誓词</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4">
+                                    <i class="fa fa-comments text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">民主生活会</h4>
+                                    <p class="text-sm text-gray-dark">结合参观学习体会，分享”航空报国精神“对自身岗位工作的启示。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4">
+                                    <i class="fa fa-book text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">微讨论活动</h4>
+                                    <p class="text-sm text-gray-dark">围绕”提升政治三力，服务国家战略“进行微讨论。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧卡片 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover">
+                    <div class="relative h-64">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/f0cd6e4a82c84fe58dc38a10ef7997fc~tplv-a9rns2rl98-image.image?rk3s=8e244e95&amp;rrcfp=2609e108&amp;x-expires=1754075981&amp;x-signature=EYXZEjlSm%2F%2FQTj5%2FFl%2FaNrCu7JA%3D" alt="党员风采" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <span class="bg-red-primary/90 text-white text-xs px-3 py-1 rounded-full">党员风采</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl text-red-primary mb-4">党员风采展示</h3>
+                        <p class="text-gray-dark mb-4">展示优秀党员的先进事迹和精神风貌，发挥党员的先锋模范作用</p>
+                        
+                        <!-- 党员列表 -->
+                        <div class="space-y-4">
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <img src="https://picsum.photos/id/1005/60/60" alt="张某某" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-medium">张某某 <span class="text-xs bg-red-primary/10 text-red-primary px-2 py-0.5 rounded">优秀共产党员</span></h4>
+                                    <p class="text-sm text-gray-dark">在国产大飞机C919建造过程中，展现党员的吃苦耐劳，争做先锋的榜样力量。</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <img src="https://picsum.photos/id/1006/60/60" alt="李某某" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-medium">李某某 <span class="text-xs bg-red-primary/10 text-red-primary px-2 py-0.5 rounded">优秀党务工作者</span></h4>
+                                    <p class="text-sm text-gray-dark">积极组织党员活动，发挥党组织在C919大飞机制造、设计中的组织引领作用</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center p-3 bg-gray-light rounded-lg">
+                                <img src="https://picsum.photos/id/1012/60/60" alt="王某某" class="w-12 h-12 rounded-full object-cover mr-4">
+                                <div>
+                                    <h4 class="font-medium">王某某 <span class="text-xs bg-red-primary/10 text-red-primary px-2 py-0.5 rounded">劳动模范</span></h4>
+                                    <p class="text-sm text-gray-dark">在C919国产大飞机设计岗位上兢兢业业，为中国商飞发展做出重要贡献</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 学习计划 -->
+            <div class="bg-white rounded-xl p-8 shadow-card">
+                <h3 class="text-2xl font-bold text-red-primary mb-6">党员学习计划</h3>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="py-3 px-4 text-left text-gray-dark font-medium">学习主题</th>
+                                <th class="py-3 px-4 text-left text-gray-dark font-medium">学习内容</th>
+                                <th class="py-3 px-4 text-left text-gray-dark font-medium">学习方式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4">
+                                    <div class="font-medium text-red-primary">党的二十大精神专题学习</div>
+                                </td>
+                                <td class="py-4 px-4">党的二十大报告、党章修正案</td>
+                                <td class="py-4 px-4">集中学习、个人自学、专题研讨</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4">
+                                    <div class="font-medium text-red-primary">党史学习教育</div>
+                                </td>
+                                <td class="py-4 px-4">《中国共产党简史》、重要历史事件</td>
+                                <td class="py-4 px-4">线上课程、实地参观、知识竞赛</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="py-4 px-4">
+                                    <div class="font-medium text-red-primary">党风廉政建设</div>
+                                </td>
+                                <td class="py-4 px-4">党内法规、典型案例分析</td>
+                                <td class="py-4 px-4">专题讲座、警示教育、交流发言</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-4 px-4">
+                                    <div class="font-medium text-red-primary">科技创新与发展</div>
+                                </td>
+                                <td class="py-4 px-4">科技创新政策、航空前沿技术</td>
+                                <td class="py-4 px-4">专家报告、实地调研、线上学习</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>党建研学·总结提升·成果固化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'red-primary': '#C92127',
+                        'red-secondary': '#A61C21',
+                        'blue-primary': '#165DFF',
+                        'gray-light': '#F8F9FA',
+                        'gray-dark': '#6C757D'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 4px 20px rgba(0, 0, 0, 0.05)',
+                        'card-hover': '0 8px 30px rgba(0, 0, 0, 0.12)',
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .hover-scale {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .hover-scale:hover {
+                transform: translateY(-5px);
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #C92127 0%, #A61C21 100%);
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            @keyframes float {
+                0% { transform: translateY(0px); }
+                50% { transform: translateY(-15px); }
+                100% { transform: translateY(0px); }
+            }
+        }
+    </style>
+
+
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full bg-white/95 backdrop-blur-sm shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-red-primary flex items-center justify-center mr-3">
+                        <i class="fa fa-star text-white text-xl"></i>
+                    </div>
+                    <span class="text-xl font-bold text-red-primary">党建引领科技</span>
+                </div>
+                
+                <!-- 桌面导航 -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="font-medium text-gray-dark hover:text-red-primary transition-colors">首页</a>
+                    <a href="#share" class="font-medium text-red-primary border-b-2 border-red-primary pb-1">交流分享</a>
+                    <a href="#certificate" class="font-medium text-gray-dark hover:text-red-primary transition-colors">颁发证书</a>
+                    <a href="#dinner" class="font-medium text-gray-dark hover:text-red-primary transition-colors">主题晚餐</a>
+                    <a href="#achievements" class="font-medium text-gray-dark hover:text-red-primary transition-colors">成果转化</a>
+                    <a href="#contact" class="font-medium text-gray-dark hover:text-red-primary transition-colors">联系我们</a>
+                </nav>
+                
+                <!-- 移动端菜单按钮 -->
+                <button id="menu-toggle" class="md:hidden text-gray-dark focus:outline-none">
+                    <i class="fa fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- 移动端导航菜单 -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-3">
+                <a href="#home" class="block py-2 text-gray-dark hover:text-red-primary">首页</a>
+                <a href="#share" class="block py-2 text-red-primary">交流分享</a>
+                <a href="#certificate" class="block py-2 text-gray-dark hover:text-red-primary">颁发证书</a>
+                <a href="#dinner" class="block py-2 text-gray-dark hover:text-red-primary">主题晚餐</a>
+                <a href="#achievements" class="block py-2 text-gray-dark hover:text-red-primary">成果转化</a>
+                <a href="#contact" class="block py-2 text-gray-dark hover:text-red-primary">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="pt-24 pb-16 relative h-[60vh] min-h-[400px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/44f12542d5704816b6a3d19a8650865a~tplv-a9rns2rl98-image.image?rcl=2025080602075688C9593CC94FFDE4BA5D&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1755022077&amp;x-signature=4gtXrCJUuucPLaLtAS3fO7IlTcU%3D" alt="党建研学总结" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-white leading-tight text-shadow mb-6">
+                    总结提升·成果固化
+                </h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 text-shadow max-w-xl">
+                    将研学感悟转化为工作动力，把学习成果转化为实际行动，以航空报国精神推动工作高质量发展
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#share" class="px-8 py-3 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-all shadow-lg hover:shadow-xl">
+                        查看活动流程 <i class="fa fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 逐梦蓝天主题交流分享会 -->
+    <section id="share" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">逐梦蓝天主题交流分享会</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">分享研学心得，交流学习感悟，凝聚奋进力量</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <!-- 左侧分享会介绍 -->
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-light rounded-xl p-8 shadow-card h-full">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4">
+                                <i class="fa fa-comments text-xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-red-primary">分享会主旨</h3>
+                        </div>
+                        
+                        <p class="text-gray-dark mb-6">
+                            围绕"逐梦蓝天"主题，分享研学心得，交流学习感悟，凝聚奋进力量。通过深入讨论C919研制中的航空报国精神与创新精神，将学习成果转化为工作动力。
+                        </p>
+                        
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-red-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-medium">分享内容要求</h4>
+                                    <p class="text-sm text-gray-dark">结合研学所见所闻，谈对航空报国精神的理解；联系本职工作，谈如何应用所学所得</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-red-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-medium">分享形式</h4>
+                                    <p class="text-sm text-gray-dark">每位分享人发言时间控制在5-8分钟，可结合PPT、短视频等形式展示</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-8 h-8 rounded-full bg-red-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-medium">交流互动</h4>
+                                    <p class="text-sm text-gray-dark">设置问答互动环节，促进思想碰撞，深化学习效果</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                
+                <!-- 右侧分享内容展示 -->
+                <div class="lg:col-span-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 分享卡片1 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://picsum.photos/id/1005/60/60" alt="分享人头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold">张某某 <span class="text-xs bg-blue-primary/10 text-blue-primary px-2 py-0.5 rounded">技术部党支部</span></h4>
+                                        <p class="text-sm text-gray-dark">高级工程师</p>
+                                    </div>
+                                </div>
+                                <h5 class="font-medium text-red-primary mb-3">"从C919看自主创新：我们的技术攻坚之路"</h5>
+                                <p class="text-gray-dark text-sm mb-4 line-clamp-4">
+                                    C919的研制过程让我深刻体会到"自主创新"的重要性。作为技术部门的党员，我们要学习航空人攻坚克难的精神，在工作中勇于突破技术瓶颈，将核心技术掌握在自己手中...
+                                </p>
+                                <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center text-sm">
+                                    查看完整分享 <i class="fa fa-angle-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 分享卡片2 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://picsum.photos/id/1006/60/60" alt="分享人头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold">李某某 <span class="text-xs bg-blue-primary/10 text-blue-primary px-2 py-0.5 rounded">办公室党支部</span></h4>
+                                        <p class="text-sm text-gray-dark">主任</p>
+                                    </div>
+                                </div>
+                                <h5 class="font-medium text-red-primary mb-3">"航空报国精神指引下的服务保障工作思考"</h5>
+                                <p class="text-gray-dark text-sm mb-4 line-clamp-4">
+                                    通过参观C919生产线，我对"细节决定成败"有了更深的认识。作为后勤保障部门，我们要像保障飞机安全飞行一样，做好服务保障工作，为一线工作提供坚实支持...
+                                </p>
+                                <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center text-sm">
+                                    查看完整分享 <i class="fa fa-angle-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 分享卡片3 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://picsum.photos/id/1012/60/60" alt="分享人头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold">王某某 <span class="text-xs bg-blue-primary/10 text-blue-primary px-2 py-0.5 rounded">市场部党支部</span></h4>
+                                        <p class="text-sm text-gray-dark">经理</p>
+                                    </div>
+                                </div>
+                                <h5 class="font-medium text-red-primary mb-3">"大国重器的市场启示：我们的品牌建设之路"</h5>
+                                <p class="text-gray-dark text-sm mb-4 line-clamp-4">
+                                    C919不仅是一款飞机，更是一个品牌，一种自信。在市场工作中，我们要借鉴C919的品牌建设经验，讲好我们的品牌故事，提升核心竞争力，开拓更广阔的市场...
+                                </p>
+                                <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center text-sm">
+                                    查看完整分享 <i class="fa fa-angle-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- 分享卡片4 -->
+                        <div class="bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover hover-scale">
+                            <div class="p-6">
+                                <div class="flex items-center mb-4">
+                                    <img src="https://picsum.photos/id/1025/60/60" alt="分享人头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                                    <div>
+                                        <h4 class="font-bold">赵某某 <span class="text-xs bg-blue-primary/10 text-blue-primary px-2 py-0.5 rounded">财务部党支部</span></h4>
+                                        <p class="text-sm text-gray-dark">会计师</p>
+                                    </div>
+                                </div>
+                                <h5 class="font-medium text-red-primary mb-3">"精益管理视角下的成本控制与效益提升"</h5>
+                                <p class="text-gray-dark text-sm mb-4 line-clamp-4">
+                                    C919项目的成本控制给了我很大启发。作为财务工作者，我们要学习这种精益管理理念，在日常工作中精打细算，优化资源配置，既保证工作质量，又提高投入产出比...
+                                </p>
+                                <a href="#" class="text-red-primary font-medium hover:text-red-secondary inline-flex items-center text-sm">
+                                    查看完整分享 <i class="fa fa-angle-right ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div></div></section>
+
+    <!-- 颁发证书环节 -->
+    <section id="certificate" class="py-20 bg-gray-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">颁发证书环节</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">见证学习成果，激励担当作为，凝聚奋进力量</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- 左侧证书展示 -->
+                <div class="relative">
+                    <div class="bg-white p-4 rounded-xl shadow-xl transform rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-gradient-to-br from-blue-primary/5 to-blue-primary/10 rounded-lg p-8 border-2 border-blue-primary/20 relative overflow-hidden">
+                            <!-- 装饰元素 -->
+                            <div class="absolute top-4 left-4 w-12 h-12 border-t-2 border-l-2 border-blue-primary/30"></div>
+                            <div class="absolute bottom-4 right-4 w-12 h-12 border-b-2 border-r-2 border-blue-primary/30"></div>
+                            
+                            <!-- 证书内容 -->
+                            <div class="text-center relative z-10">
+                                <div class="w-20 h-20 mx-auto mb-6">
+                                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/1634cc5b095c488d882acb7195a0151d~tplv-a9rns2rl98-image.image?rcl=202508060214374D2F0EF6E7CD1A3CE50E&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1755022477&amp;x-signature=V9X0JeVtNF9IE%2F1cTde9GA%2FcUz8%3D" alt="党徽" class="w-full h-full object-contain">
+                                </div>
+                                
+                                <h3 class="text-2xl font-bold text-blue-primary mb-2">结业证书</h3>
+                                <p class="text-gray-dark mb-6">C919党建研学活动</p>
+                                
+                                <p class="text-lg font-medium mb-1">兹授予</p>
+                                <p class="text-3xl font-bold text-red-primary mb-6">张某某 同志</p>
+                                <p class="text-gray-dark mb-6 max-w-md mx-auto">
+                                    参加"走进C919"党建研学活动，完成全部学习内容，表现优异，准予结业。
+                                </p>
+                                
+                                <p class="text-gray-dark text-sm mb-1">特发此证，以资鼓励</p>
+                                
+                                <div class="flex justify-between mt-8 pt-6 border-t border-gray-200">
+                                    <div class="text-center">
+                                        <p class="text-sm text-gray-dark">主办单位</p>
+                                        <p class="font-medium">党委办公室</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="text-sm text-gray-dark">日期</p>
+                                        <p class="font-medium">2025年7月20日</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 装饰元素 -->
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-red-primary/10 rounded-full z-[-1]"></div>
+                    <div class="absolute -top-6 -left-6 w-24 h-24 bg-blue-primary/10 rounded-full z-[-1]"></div>
+                </div>
+                
+                <!-- 右侧证书颁发介绍 -->
+                <div>
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-red-primary mb-4 flex items-center">
+                                <i class="fa fa-certificate text-blue-primary mr-3"></i>
+                                证书颁发意义
+                            </h3>
+                            <p class="text-gray-dark mb-4">
+                                证书不仅是对党员参与研学活动的肯定，更是对党员传承航空报国精神、立足岗位担当作为的激励。通过颁发证书，增强党员的荣誉感和责任感，激发干事创业的内生动力。
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-red-primary mb-4 flex items-center">
+                                <i class="fa fa-list-alt text-blue-primary mr-3"></i>
+                                颁发流程
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">1</div>
+                                    <div>
+                                        <h4 class="font-medium">主持人介绍证书意义</h4>
+                                        <p class="text-sm text-gray-dark">阐述证书颁发的意义和价值，强调研学成果转化的重要性</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">2</div>
+                                    <div>
+                                        <h4 class="font-medium">分组颁发证书</h4>
+                                        <p class="text-sm text-gray-dark">按党支部分组，由领导为学员颁发证书并合影留念</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="w-8 h-8 rounded-full bg-blue-primary text-white flex items-center justify-center text-sm font-bold mr-3 mt-0.5 flex-shrink-0">3</div>
+                                    <div>
+                                        <h4 class="font-medium">学员代表发言</h4>
+                                        <p class="text-sm text-gray-dark">学员代表分享获得证书的感受和未来工作承诺</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-bold text-red-primary mb-4 flex items-center">
+                                <i class="fa fa-lightbulb-o text-blue-primary mr-3"></i>
+                                激励机制
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg shadow-card">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fa fa-trophy text-yellow-500 mr-2"></i>
+                                        <h4 class="font-medium">优秀学员评选</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-dark">根据研学表现评选优秀学员，纳入党员评优参考</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-card">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fa fa-star text-yellow-500 mr-2"></i>
+                                        <h4 class="font-medium">学习成果展示</h4>
+                                        <a href="#achievements" class="text-xs text-blue-primary ml-2 hover:underline">查看</a>
+                                    </div>
+                                    <p class="text-sm text-gray-dark">优秀心得在党建平台展示，促进经验交流</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-card">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fa fa-flag text-yellow-500 mr-2"></i>
+                                        <h4 class="font-medium">实践承诺公示</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-dark">党员公开工作承诺，接受监督，推动成果转化</p>
+                                </div>
+                                
+                                <div class="bg-white p-4 rounded-lg shadow-card">
+                                    <div class="flex items-center mb-2">
+                                        <i class="fa fa-line-chart text-yellow-500 mr-2"></i>
+                                        <h4 class="font-medium">跟踪评估机制</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-dark">建立学习成果转化评估机制，定期跟踪落实情况</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+
+            <!-- 党员行动承诺墙 -->
+            <div class="mt-20">
+                <h3 class="text-xl font-bold text-red-primary mb-8 text-center">党员行动承诺墙</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- 承诺卡片1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover hover-scale">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/id/1005/60/60" alt="党员头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold">张某某</h4>
+                                <p class="text-sm text-gray-dark">技术部党支部</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-dark text-sm mb-4">
+                            "我承诺：以C919研制团队为榜样，攻克技术难题，三季度完成2项技术创新。"
+                        </p>
+                        <div class="text-xs text-gray-dark">
+                            <span class="mr-3"><i class="fa fa-calendar-o mr-1"></i> 承诺日期：2025-07-20</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 承诺卡片2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover hover-scale">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/id/1006/60/60" alt="党员头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold">李某某</h4>
+                                <p class="text-sm text-gray-dark">办公室党支部</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-dark text-sm mb-4">
+                            "我承诺：学习航空人严谨细致精神，优化服务流程，提升工作效率20%以上。"
+                        </p>
+                        <div class="text-xs text-gray-dark">
+                            <span class="mr-3"><i class="fa fa-calendar-o mr-1"></i> 承诺日期：2025-07-20</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 承诺卡片3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover hover-scale">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/id/1012/60/60" alt="党员头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold">王某某</h4>
+                                <p class="text-sm text-gray-dark">市场部党支部</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-dark text-sm mb-4">
+                            "我承诺：借鉴C919品牌建设经验，拓展市场渠道，三季度实现销售额增长15%。"
+                        </p>
+                        <div class="text-xs text-gray-dark">
+                            <span class="mr-3"><i class="fa fa-calendar-o mr-1"></i> 承诺日期：2025-07-20</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 承诺卡片4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-card hover:shadow-card-hover hover-scale">
+                        <div class="flex items-center mb-4">
+                            <img src="https://picsum.photos/id/1025/60/60" alt="党员头像" class="w-12 h-12 rounded-full object-cover mr-4">
+                            <div>
+                                <h4 class="font-bold">赵某某</h4>
+                                <p class="text-sm text-gray-dark">财务部党支部</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-dark text-sm mb-4">
+                            "我承诺：学习精益管理理念，优化成本控制流程，全年节约行政开支10%。"
+                        </p>
+                        <div class="text-xs text-gray-dark">
+                            <span class="mr-3"><i class="fa fa-calendar-o mr-1"></i> 承诺日期：2025-07-20</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-10">
+                    <a href="#" class="inline-block px-8 py-3 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors shadow-lg hover:shadow-xl">
+                        查看更多承诺 <i class="fa fa-angle-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        
+    
+
+    <!-- 联系我们 -->
+    <section id="contact" class="py-20 bg-gray-light">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-red-primary mb-4">联系我们</h2>
+                <p class="text-gray-dark max-w-2xl mx-auto">如有任何问题或建议，请随时与我们联系</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <!-- 左侧联系信息 -->
+                <div>
+                    <div class="bg-white rounded-xl p-8 shadow-card">
+                        <h3 class="text-xl font-bold text-red-primary mb-6">联系方式</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4 mt-1">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">地址</h4>
+                                    <p class="text-gray-dark">成都市C919商飞</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4 mt-1">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">电话</h4>
+                                    <p class="text-gray-dark">010-12345678</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4 mt-1">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">邮箱</h4>
+                                    <p class="text-gray-dark">dangjian@example.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-red-primary/10 rounded-full flex items-center justify-center text-red-primary mr-4 mt-1">
+                                    <i class="fa fa-clock-o"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium mb-1">工作时间</h4>
+                                    <p class="text-gray-dark">周一至周五: 9:00 - 17:00</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-medium mb-3">关注我们</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-red-primary text-white rounded-full flex items-center justify-center hover:bg-red-secondary transition-colors">
+                                    <i class="fa fa-weixin"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-red-primary text-white rounded-full flex items-center justify-center hover:bg-red-secondary transition-colors">
+                                    <i class="fa fa-weibo"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-red-primary text-white rounded-full flex items-center justify-center hover:bg-red-secondary transition-colors">
+                                    <i class="fa fa-youtube-play"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-red-primary text-white rounded-full flex items-center justify-center hover:bg-red-secondary transition-colors">
+                                    <i class="fa fa-qq"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 右侧表单 -->
+                <div>
+                    <div class="bg-white rounded-xl p-8 shadow-card">
+                        <h3 class="text-xl font-bold text-red-primary mb-6">留言反馈</h3>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-dark mb-1">姓名</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-primary/50 focus:border-red-primary" placeholder="请输入您的姓名">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-dark mb-1">邮箱</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-primary/50 focus:border-red-primary" placeholder="请输入您的邮箱">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-dark mb-1">主题</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-primary/50 focus:border-red-primary" placeholder="请输入留言主题">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-dark mb-1">留言内容</label>
+                                <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-primary/50 focus:border-red-primary" placeholder="请输入您的留言内容"></textarea>
+                            </div>
+                            
+                            <div class="flex items-center">
+                                <input type="checkbox" id="privacy" name="privacy" class="mr-2">
+                                <label for="privacy" class="text-sm text-gray-dark">我同意网站<a href="#" class="text-red-primary hover:underline">隐私政策</a></label>
+                            </div>
+                            
+                            <button type="submit" class="px-6 py-3 bg-red-primary text-white rounded-md hover:bg-red-secondary transition-colors">
+                                提交留言 <i class="fa fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-red-primary text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <img src="https://picsum.photos/id/28/60/60" alt="党旗" class="h-10 w-10 rounded-md mr-3">
+                        <div>
+                            <h3 class="text-xl font-bold">党建文化展示平台</h3>
+                            <p class="text-xs text-white/70">感悟成就·文化浸润·精神传承</p>
+                        </div>
+                    </div>
+                    <p class="text-white/70 mb-6">深入学习贯彻党的二十大精神，推动党建工作高质量发展</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-weixin"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
+                            <i class="fa fa-qq"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">快速链接</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-white/70 hover:text-white transition-colors">首页</a></li>
+                        <li><a href="#achievements" class="text-white/70 hover:text-white transition-colors">感悟成就</a></li>
+                        <li><a href="#experiences" class="text-white/70 hover:text-white transition-colors">沉浸体验</a></li>
+                        <li><a href="#organizations" class="text-white/70 hover:text-white transition-colors">组织生活</a></li>
+                        <li><a href="#news" class="text-white/70 hover:text-white transition-colors">党建要闻</a></li>
+                        <li><a href="#contact" class="text-white/70 hover:text-white transition-colors">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">相关资源</h4>
+                    <ul class="space-y-3">
+                        <li><a href="http://www.12371.cn/" target="_blank" class="text-white/70 hover:text-white transition-colors">共产党员网</a></li>
+                        <li><a href="http://www.qstheory.cn/" target="_blank" class="text-white/70 hover:text-white transition-colors">求是网</a></li>
+                        <li><a href="http://cpc.people.com.cn/" target="_blank" class="text-white/70 hover:text-white transition-colors">人民网-中国共产党新闻网</a></li>
+                        <li><a href="http://www.ccps.gov.cn/" target="_blank" class="text-white/70 hover:text-white transition-colors">中央党校</a></li>
+                        <li><a href="http://www.12371.cn/special/xxd20tgzs/" target="_blank" class="text-white/70 hover:text-white transition-colors">二十大专题</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-6">订阅我们</h4>
+                    <p class="text-white/70 mb-4">订阅我们的党建资讯，及时获取最新动态</p>
+                    <form class="mb-4">
+                        <div class="flex">
+                            <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-800">
+                            <button type="submit" class="bg-white text-red-primary px-4 rounded-r-md hover:bg-gray-100 transition-colors">
+                                <i class="fa fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="text-white/70 text-sm">扫描二维码关注公众号</p>
+                    <div class="mt-2 bg-white p-2 inline-block rounded-md">
+                        <img src="https://picsum.photos/id/1000/100/100" alt="公众号二维码" class="w-24 h-24">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-white/70 text-sm mb-4 md:mb-0">© 2025 党建文化展示平台. 保留所有权利.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-white/70 hover:text-white text-sm transition-colors">隐私政策</a>
+                        <a href="#" class="text-white/70 hover:text-white text-sm transition-colors">使用条款</a>
+                        <a href="#" class="text-white/70 hover:text-white text-sm transition-colors">网站地图</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-red-primary text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all z-50">
+        <i class="fa fa-angle-up text-xl"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-3');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+        });
+        
+        // 移动端菜单
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 返回顶部按钮
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.add('opacity-0', 'invisible');
+                backToTopButton.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 轮播图
+        const track = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevButton = document.querySelector('.carousel-prev');
+        const nextButton = document.querySelector('.carousel-next');
+        const indicators = document.querySelectorAll('.carousel-indicators button');
+        let currentIndex = 0;
+        let slideWidth = 100; // 默认宽度为100%
+        
+        // 设置轮播图宽度
+        function setSlideWidth() {
+            if (window.innerWidth >= 1024) {
+                slideWidth = 100 / 3; // 大屏幕显示3个
+            } else if (window.innerWidth >= 768) {
+                slideWidth = 50; // 中等屏幕显示2个
+            } else {
+                slideWidth = 100; // 小屏幕显示1个
+            }
+            
+            slides.forEach(slide => {
+                slide.style.minWidth = `${slideWidth}%`;
+            });
+            
+            updateCarousel();
+        }
+        
+        // 更新轮播图位置
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+            
+            // 更新指示器
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('bg-red-primary/30');
+                    indicator.classList.remove('bg-gray-300');
+                } else {
+                    indicator.classList.remove('bg-red-primary/30');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        // 下一张
+        function nextSlide() {
+            const maxIndex = slides.length - Math.floor(100 / slideWidth);
+            currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+            updateCarousel();
+        }
+        
+        // 上一张
+        function prevSlide() {
+            const maxIndex = slides.length - Math.floor(100 / slideWidth);
+            currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+            updateCarousel();
+        }
+        
+        // 点击指示器
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // 设置初始宽度
+        setSlideWidth();
+        
+        // 窗口大小变化时重新设置宽度
+        window.addEventListener('resize', setSlideWidth);
+        
+        // 轮播图自动播放
+        let autoplayInterval = setInterval(nextSlide, 5000);
+        
+        // 鼠标悬停时暂停自动播放
+        track.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+        
+        // 鼠标离开时恢复自动播放
+        track.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        });
+        
+        // 按钮点击事件
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
+        
+        // 数字计数动画
+        const counters = document.querySelectorAll('.counter');
+        
+        function animateCounter(counter) {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / 200; // 分200步完成动画
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(counter), 1);
+            } else {
+                counter.innerText = target;
+            }
+        }
+        
+        // 检查元素是否在视口中
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        // 滚动时检查计数器是否在视口中
+        let countersAnimated = false;
+        window.addEventListener('scroll', () => {
+            if (!countersAnimated && isInViewport(document.querySelector('.counter'))) {
+                counters.forEach(counter => animateCounter(counter));
+                countersAnimated = true;
+            }
+        });
+        
+        // 表单提交
+        const contactForm = document.getElementById('contact-form');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // 这里可以添加表单验证和提交逻辑
+            alert('感谢您的留言！我们会尽快回复您。');
+            contactForm.reset();
+        });
+    </script>
+
+    </div></section></body></html>
