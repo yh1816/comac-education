@@ -1,0 +1,2063 @@
+<html lang="zh-CN"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>中国商飞教育 - 探索航空航天的奥秘</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  
+  <!-- Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#0B3D91',
+            secondary: '#F26422',
+            accent: '#125DCD',
+            neutral: '#F5F7FA',
+            'neutral-dark': '#2C3E50',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #0B3D91 0%, #125DCD 100%);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body class="font-inter bg-white text-neutral-dark">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300">
+    <nav class="bg-white/90 backdrop-blur-md shadow-sm py-4 px-6 md:px-12">
+      <div class="container mx-auto flex justify-between items-center">
+        <a href="#" class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+            <i class="fa fa-rocket text-white text-xl"></i>
+          </div>
+          <span class="text-xl font-bold text-primary">中国商飞教育</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-neutral-dark hover:text-primary transition-colors font-medium">首页</a>
+          <a href="#about" class="text-neutral-dark hover:text-primary transition-colors font-medium">关于C919</a>
+          <a href="#courses" class="text-neutral-dark hover:text-primary transition-colors font-medium">课程体系</a>
+          <a href="#blog" class="text-neutral-dark hover:text-primary transition-colors font-medium">航空知识</a>
+          <a href="#events" class="text-neutral-dark hover:text-primary transition-colors font-medium">活动日历</a>
+          <a href="#C919大飞机" class="text-neutral-dark hover:text-primary transition-colors font-medium">我为大飞机代言</a>
+          <a href="#contact" class="text-neutral-dark hover:text-primary transition-colors font-medium">联系我们</a>
+          <a href="#" class="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-full transition-all shadow-md hover:shadow-lg">登录</a>
+        </div>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden text-neutral-dark text-2xl focus:outline-none">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+      <div class="container mx-auto py-4 px-6 flex flex-col space-y-4">
+        <a href="#home" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">首页</a>
+        <a href="#about" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">关于C919</a>
+        <a href="#courses" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">课程体系</a>
+        <a href="#blog" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">航空知识</a>
+        <a href="#events" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">活动日历</a>
+        <a href="#contact" class="text-neutral-dark hover:text-primary transition-colors py-2 border-b border-gray-100">联系我们</a>
+        <a href="#" class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full transition-all text-center shadow-md hover:shadow-lg">登录</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 英雄区域 -->
+  <section id="home" class="pt-28 pb-20 md:pt-40 md:pb-32 px-6 md:px-12 bg-neutral relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-primary/5 to-transparent -z-10"></div>
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+      <div class="md:w-1/2 mb-10 md:mb-0">
+        <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-neutral-dark mb-6">
+          探索<span class="text-primary">航空</span>的奥秘
+        </h1>
+        <p class="text-lg text-gray-600 mb-8 max-w-xl">中国商飞教育致力于传播航空知识，传承红色基因，培养未来航空人才，让小朋友更好地了解中国大飞机事业的发展历程与科技创新。</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#courses" class="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl font-medium flex items-center">
+            <span>探索课程</span>
+            <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+          <a href="#simulation" class="bg-white hover:bg-gray-50 text-primary border-2 border-primary px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg font-medium flex items-center">
+            <i class="fa fa-plane mr-2"></i>
+            <span>模拟飞行体验</span>
+          </a>
+        </div>
+        
+        <div class="mt-12 flex items-center space-x-6">
+          <div class="flex -space-x-2">
+            <img src="https://picsum.photos/id/1001/100/100" alt="学员照片" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://picsum.photos/id/1002/100/100" alt="学员照片" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://picsum.photos/id/1003/100/100" alt="学员照片" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://picsum.photos/id/1004/100/100" alt="学员照片" class="w-10 h-10 rounded-full border-2 border-white">
+          </div>
+          <div>
+            <div class="flex items-center">
+              <div class="flex">
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+                <i class="fa fa-star text-yellow-400"></i>
+              </div>
+              <span class="ml-2 font-semibold">4.9/5</span>
+            </div>
+            <p class="text-sm text-gray-600">来自1000+学员的真实评价</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="md:w-1/2 relative">
+        <div class="relative z-10 animate-float">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/98dff9ecc05c4badb32a5d103517e121~tplv-a9rns2rl98-image.image?rcl=202508051541347FEC5509AC12E5BB6EA1&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984494&amp;x-signature=SPfGJDa6dAslaRU%2B8mVTWdxtG34%3D" alt="C919客机" class="rounded-2xl shadow-2xl">
+          <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-lg flex items-center space-x-3">
+            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+              <i class="fa fa-users text-primary text-xl"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">学员总数</p>
+              <p class="text-xl font-bold text-neutral-dark">10,000+</p>
+            </div>
+          </div>
+          <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-lg flex items-center space-x-3">
+            <div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
+              <i class="fa fa-graduation-cap text-secondary text-xl"></i>
+            </div>
+            <div>
+              <p class="text-gray-500 text-sm">合作企业</p>
+              <p class="text-xl font-bold text-neutral-dark">50+</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 装饰元素 -->
+        <div class="absolute top-1/2 left-1/2 w-96 h-96 bg-primary/20 rounded-full filter blur-3xl -z-10 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute top-10 right-10 w-20 h-20 bg-secondary/20 rounded-full -z-10"></div>
+        <div class="absolute bottom-10 left-10 w-16 h-16 bg-primary/20 rounded-full -z-10"></div>
+      </div>
+    </div>
+    
+    <!-- 统计数据 -->
+    <div class="container mx-auto mt-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10">
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <i class="fa fa-rocket text-primary text-xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-dark mb-2">50+</h3>
+          <p class="text-gray-600">合作企业</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <i class="fa fa-users text-primary text-xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-dark mb-2">10,000+</h3>
+          <p class="text-gray-600">体验学员</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <i class="fa fa-certificate text-primary text-xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-dark mb-2">98%</h3>
+          <p class="text-gray-600">满意度</p>
+        </div>
+        <div class="bg-white rounded-xl p-6 shadow-md">
+          <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+            <i class="fa fa-globe text-primary text-xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-neutral-dark mb-2">100+</h3>
+          <p class="text-gray-600">师资力量</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 关于C919 -->
+  <section id="about" class="py-20 px-6 md:px-12 bg-white">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">关于C919</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">中国大飞机的骄傲</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">C919是中国首款按照最新国际适航标准，具有自主知识产权的干线民用飞机，是中国航空工业的重要里程碑。</p>
+      </div>
+      
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-1/2">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/06a9db6c1a014dd28d1ef1c4f3fc6eb3~tplv-a9rns2rl98-image.image?rcl=2025080515414907BE6E2357D7ACA336EB&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984509&amp;x-signature=c1A78jYh1AmnfANHFckwqDbIwhQ%3D" alt="C919客机" class="rounded-2xl shadow-xl">
+        </div>
+        
+        <div class="md:w-1/2">
+          <h3 class="text-2xl font-bold text-neutral-dark mb-6">C919大型客机简介</h3>
+          
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                <i class="fa fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-neutral-dark mb-2">自主知识产权</h4>
+                <p class="text-gray-600">C919是我国拥有自主知识产权的干线民用飞机，从总体设计到关键技术均由我国自主研发。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                <i class="fa fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-neutral-dark mb-2">先进技术</h4>
+                <p class="text-gray-600">采用先进气动布局和新一代超临界机翼等先进气动力设计技术，达到国际先进水平。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                <i class="fa fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-neutral-dark mb-2">经济环保</h4>
+                <p class="text-gray-600">相比同类飞机，C919的碳排放量更低，燃油消耗减少15%，座公里直接使用成本降低10%。</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0 mt-1">
+                <i class="fa fa-check text-primary"></i>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold text-neutral-dark mb-2">舒适体验</h4>
+                <p class="text-gray-600">客舱采用宽体设计，座椅间距更宽敞，噪音更低，为乘客提供更舒适的飞行体验。</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-10">
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              <span>了解更多C919的技术细节</span>
+              <i class="fa fa-long-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 技术参数 -->
+      <div class="mt-20">
+        <h3 class="text-2xl font-bold text-neutral-dark mb-10 text-center">C919技术参数</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-neutral rounded-xl p-6 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="font-semibold text-neutral-dark">客座数</h4>
+              <span class="text-primary font-bold">158-168座</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width: 85%"></div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral rounded-xl p-6 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="font-semibold text-neutral-dark">航程</h4>
+              <span class="text-primary font-bold">5,555公里</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width: 78%"></div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral rounded-xl p-6 shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+              <h4 class="font-semibold text-neutral-dark">巡航速度</h4>
+              <span class="text-primary font-bold">0.785马赫</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width: 82%"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h4 class="font-semibold text-neutral-dark mb-2">翼展</h4>
+            <p class="text-primary font-bold text-xl">35.8米</p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h4 class="font-semibold text-neutral-dark mb-2">机身长度</h4>
+            <p class="text-primary font-bold text-xl">38.9米</p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h4 class="font-semibold text-neutral-dark mb-2">高度</h4>
+            <p class="text-primary font-bold text-xl">11.95米</p>
+          </div>
+          
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <h4 class="font-semibold text-neutral-dark mb-2">最大起飞重量</h4>
+            <p class="text-primary font-bold text-xl">72,500公斤</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- C919模拟飞行体验 -->
+  <section id="simulation" class="py-20 px-6 md:px-12 bg-gradient-blue text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-full h-full opacity-10">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="w-full h-full">
+        <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#grid-pattern)"></path>
+      </svg>
+      <defs>
+        <pattern id="grid-pattern" width="10" height="10" patternunits="userSpaceOnUse">
+          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5">
+        </path></pattern>
+      </defs>
+    </div>
+    
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-white/80 font-semibold">沉浸式体验</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-white mt-2 mb-4">C919模拟飞行体验</h2>
+        <p class="text-white/80 max-w-2xl mx-auto">通过先进的飞行模拟器，体验驾驶C919大型客机的乐趣，了解飞行员的工作流程和操作技能。</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 shadow-lg card-hover">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-gamepad text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">进校-商飞科学课</h3>
+          <p class="text-white/80 mb-6">以“培养从小热爱航空的中国人”为目标，以探究为核心，以培养航空科学素养为宗旨，将航空科学与小学科学融合。</p>
+          <a href="#" class="inline-flex items-center text-white font-medium hover:underline">
+            <span>了解详情</span>
+            <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 shadow-lg card-hover">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-map text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">进馆-商飞科普活动</h3>
+          <p class="text-white/80 mb-6">根据儿童青少年不同阶段的身心特征，科学制定了科普基地内覆盖小学学段的科学体验课程，更好地培养学生们的科学素养和创新能力。</p>
+          <a href="#" class="inline-flex items-center text-white font-medium hover:underline">
+            <span>了解详情</span>
+            <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+        
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-8 shadow-lg card-hover">
+          <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-graduation-cap text-white text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-bold text-white mb-4">进阶-赛事培训</h3>
+          <p class="text-white/80 mb-6">对航空事业有浓厚兴趣的同学可被选拔参加大飞机四川科普基地的赛事训练课程，训练合格后参加教育部白名单赛事，培养航空事业未来人才。</p>
+          <a href="#" class="inline-flex items-center text-white font-medium hover:underline">
+            <span>了解详情</span>
+            <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="mt-20 bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-12 shadow-xl">
+        <div class="flex flex-col md:flex-row items-center gap-10">
+          <div class="md:w-1/2">
+            <h3 class="text-2xl font-bold text-white mb-6">重要课程——五边飞行</h3>
+            <div class="space-y-6">
+              <div class="flex">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="font-bold">1</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-white mb-2">起飞</h4>
+                  <p class="text-white/80">完成后，获得专业教练的评估和建议，进行下一步学习。</p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="font-bold">2</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-white mb-2">爬升</h4>
+                  <p class="text-white/80">完成后，获得专业教练的评估和建议，进行下一步学习。</p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="font-bold">3</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-white mb-2">转向</h4>
+                  <p class="text-white/80">完成后，获得专业教练的评估和建议，进行下一步学习。</p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="font-bold">4</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-white mb-2">平飞</h4>
+                  <p class="text-white/80">完成飞行后，获得专业教练的评估和建议，进行最后一步学习。</p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <span class="font-bold">4</span>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-white mb-2">下降及降落</h4>
+                  <p class="text-white/80">完成飞行后，获得专业教练的评估和建议，获得模拟飞行体验证书。</p>
+            </div>
+          </div>
+          
+          <div class="md:w-1/2">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/f6361e1197e64ef198ab42065d937426~tplv-a9rns2rl98-image.image?rcl=2025080515420863D7339FB1F0E020516C&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984531&amp;x-signature=XKb2g6dM58LniHy90c2Lz26u3FY%3D" alt="飞行模拟器" class="rounded-xl shadow-xl">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div></section>
+
+  <!-- 课程体系 -->
+  <section id="courses" class="py-20 px-6 md:px-12 bg-neutral">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">专业课程</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">探索我们的课程体系</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">从航空基础知识到专业飞行技能，我们提供全方位的航空教育课程，满足不同学习需求。</p>
+      </div>
+      
+      <!-- 课程筛选 -->
+      <div class="flex flex-wrap justify-center gap-4 mb-12">
+        <button class="px-6 py-2 rounded-full bg-primary text-white shadow-md">全部课程</button>
+        <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">航空理论</button>
+        <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">模拟体验</button>
+        <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">航模制作</button>
+        <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">线下实践</button>
+        <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">创意课程</button>
+      </div>
+      
+      <!-- 课程卡片 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/e2dba691cec04f40bd83b39f325b0854~tplv-a9rns2rl98-image.image?rcl=20250805154254A819E3CDE382C632BC7F&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984574&amp;x-signature=wvg279kY%2FGFVCa3xPrdX8Ct6MD8%3D" alt="航空概论课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">热门</div>
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">航空理论</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 40课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.9</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">C919诞生之路</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">总书记语录/商飞八大能力图谱&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; C919参数介绍&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;总装车间展示</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl">¥</span>
+           <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/a62121bafc334f4e9e46a3403f04cf67~tplv-a9rns2rl98-image.image?rcl=202508051543056064011A34EE85D66DE1&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984589&amp;x-signature=rbidoPIRc0F0J24tE38F2bMuMLc%3D" alt="飞行模拟器课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">模拟体验</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 20课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.8</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">成都地标打卡飞行模拟</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">成都平原的画卷，看青羊宫的飞檐刺破晨雾，峨眉山的轮廓在云端渐显，春熙路武侯祠...</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl">¥</span>
+              <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/e1e07a46f09f433bbe4eb4d8a00b93e1~tplv-a9rns2rl98-image.image?rcl=202508051543277FEC5509AC12E5BBB9BA&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984607&amp;x-signature=3JMktUJvAti4NBypG%2FXZN%2Fxo1Ws%3D" alt="航空发动机课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-semibold px-3 py-1 rounded-full">新课</div>
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">航模制作</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 60课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.7</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">C919科学课航模制作</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">组装设计C919航模，学习飞行五大部件增加安全设计要素，争当机型设计师。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl"></span>
+              <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/5100712ee9a7485cbb67247bf7affff8~tplv-a9rns2rl98-image.image?rcl=2025080515433803B9BEF840FA430510EA&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984618&amp;x-signature=Y6tsGhMYVAcHQ6vteDU8d0BDemk%3D" alt="航空电子课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">线下实践</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 50课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.6</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">C919一日营活动</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">实训基地参观，文化展厅参观，互动体验操作，C919飞行体验。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl">¥</span>
+              <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/fc2cb942034e4012bcb2fb466b92d66c~tplv-a9rns2rl98-image.image?rcl=20250805154352F023AD047A610CA67E2F&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984633&amp;x-signature=IU4nvUqldSN6utw3VHGazJ4JpkY%3D" alt="航空安全课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">创意课程</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 30课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.9</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">C919零件收集创意课程</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">参加一日营活动收集零件，领取拼图图纸，拼成完整的C919拼图，领取属于你的模型。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl">¥</span>
+              <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/468980aba60045e4b380331332ff95fc~tplv-a9rns2rl98-image.image?rcl=20250805154402580C53EB61B05163BF35&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984642&amp;x-signature=sB0hxE0u9janTHkzem5rrP%2F7xPY%3D" alt="高级飞行技术课程" class="w-full h-52 object-cover">
+            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">热门</div>
+            <div class="absolute top-4 right-4 bg-white text-primary text-xs font-semibold px-3 py-1 rounded-full">赛事培训</div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-3">
+              <span class="text-gray-500 text-sm"><i class="fa fa-clock-o mr-1"></i> 80课时</span>
+              <div class="flex items-center">
+                <i class="fa fa-star text-yellow-400 text-sm"></i>
+                <span class="ml-1 text-sm font-medium">4.9</span>
+              </div>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">青少年赛事培训活动</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">模拟飞行赛项：紧急迫降挑战赛，大飞机转场挑战赛等。</p>
+            <div class="flex justify-between items-center">
+              <span class="text-primary font-bold text-xl">¥</span>
+              <a href="#" class="bg-primary/10 hover:bg-primary/20 text-primary px-4 py-2 rounded-full transition-colors text-sm font-medium">立即报名</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#" class="inline-flex items-center bg-white text-primary border-2 border-primary px-8 py-3 rounded-full transition-all shadow-md hover:shadow-lg font-medium">
+          <span>查看全部课程</span>
+          <i class="fa fa-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- 航空知识博客 -->
+  <section id="blog" class="py-20 px-6 md:px-12 bg-neutral">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">知识探索</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">航空知识博客</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">探索航空领域的最新资讯、技术发展和历史故事，深入了解航空世界的奥秘。</p>
+      </div>
+      
+      <!-- 搜索栏 -->
+      <div class="max-w-2xl mx-auto mb-12 relative">
+        <input type="text" placeholder="搜索航空知识文章..." class="w-full px-6 py-4 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+        <button class="absolute right-3 top-1/2 -translate-y-1/2 bg-primary text-white p-2 rounded-full">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      
+      <!-- 博客文章 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/bf1ca53f47a943daa40493c6d1a982a7~tplv-a9rns2rl98-image.image?rcl=2025080515442996D935A55AEF25FCBA31&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984669&amp;x-signature=YqQr3gx4tINVJ5nR2hAdpdobOf4%3D" alt="C919的技术突破" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar-o mr-1"></i> 2025-06-15</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-user-o mr-1"></i> 李工程师</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">C919的技术突破：中国航空工业的里程碑</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">C919大型客机的成功首飞标志着中国航空工业取得了重大突破。本文将深入探讨C919的关键技术创新和研发历程...</p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              <span>阅读全文</span>
+              <i class="fa fa-long-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/8caebee5e7984f0b896ce0dc50f3497c~tplv-a9rns2rl98-image.image?rcl=202508051544187272EDB083A50CB390AE&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984659&amp;x-signature=D8lfMab%2FpFI3I0hTCf8z7hE5oDU%3D" alt="飞行员的一天" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar-o mr-1"></i> 2025-06-20</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-user-o mr-1"></i> 王机长</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">飞行员的一天：揭秘驾驶舱内的真实生活</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">作为一名民航飞行员，每天的工作是什么样的？从起飞前的准备到降落的全过程，本文将带你了解飞行员的日常工作...</p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              <span>阅读全文</span>
+              <i class="fa fa-long-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/f86947eb9e604d52943e4d6aa3062dc5~tplv-a9rns2rl98-image.image?rcl=2025080515443663D7339FB1F0E020A712&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984676&amp;x-signature=BVk8aP21meQBuO%2FmIiUoztMf4%2FU%3D" alt="航空发动机技术" class="w-full h-52 object-cover">
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar-o mr-1"></i> 2025-06-25</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-user-o mr-1"></i> 张教授</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">航空发动机技术：从涡轮喷气到混合动力</h3>
+            <p class="text-gray-600 mb-4 line-clamp-3">航空发动机是飞机的"心脏"，其技术发展直接影响着航空业的进步。本文将回顾航空发动机的发展历程，并展望未来的技术趋势...</p>
+            <a href="#" class="inline-flex items-center text-primary font-medium hover:underline">
+              <span>阅读全文</span>
+              <i class="fa fa-long-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 博客分类 -->
+      <div class="mt-16">
+        <h3 class="text-2xl font-bold text-neutral-dark mb-8 text-center">热门分类</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-plane text-primary mr-2"></i>
+            <span>C919飞机技术</span>
+          </a>
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-map-o text-primary mr-2"></i>
+            <span>航空史话</span>
+          </a>
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-cogs text-primary mr-2"></i>
+            <span>小学生模拟飞行</span>
+          </a>
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-tachometer text-primary mr-2"></i>
+            <span>五边飞行</span>
+          </a>
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-line-chart text-primary mr-2"></i>
+            <span>航空强国</span>
+          </a>
+          <a href="#" class="bg-white hover:bg-gray-50 text-neutral-dark px-6 py-3 rounded-full shadow-sm transition-all flex items-center">
+            <i class="fa fa-rocket text-primary mr-2"></i>
+            <span>航空探索</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 活动日历 -->
+  <section id="events" class="py-20 px-6 md:px-12 bg-white">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">活动日历</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">航空一日营活动</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">参与我们的线下活动、讲座和一日营活动，与行业专家和兴趣相投的小朋友交流学习。</p>
+      </div>
+      
+      <!-- 活动卡片 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/0b8cd04e3b944acab19d08dcc17c6e38~tplv-a9rns2rl98-image.image?rcl=2025080515445082E295D3D9E600AB4A69&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984692&amp;x-signature=SRoxatZlMT5u2V9pmHN91Ti%2FJyI%3D" alt="C919技术讲座" class="w-full h-48 object-cover">
+            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">线下活动</div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar mr-1"></i> 2025-07-25</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-clock-o mr-1"></i> 14:00-16:00</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">真实商飞探秘：走进C919，飞向世界</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">由C919总设计师团队成员亲自讲解，深入剖C919的设计理念、关键技术和创新点。走进科普馆，了解大飞机进程。</p>
+            <div class="flex justify-between items-center">
+              <span class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">成都</span>
+              <a href="#" class="text-primary font-medium hover:underline">预约报名</a>
+  
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/11efe772ce16486694f3e2d005bfdf6a~tplv-a9rns2rl98-image.image?rcl=2025080515450632FA939ADD71940BD6CD&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984707&amp;x-signature=AmCvRpCOnol3nPWH2X0Fk%2FFwsXk%3D" alt="青少年航空体验营" class="w-full h-48 object-cover">
+            <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-semibold px-3 py-1 rounded-full">亲子活动</div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar mr-1"></i> 2025-08-05至08-10</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-clock-o mr-1"></i> 全天</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">模拟飞行体验营：飞向蓝天的梦想</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">专业飞行模拟器，孩子亲手“开飞机”。</p>
+            <div class="flex justify-between items-center">
+              <span class="bg-secondary/10 text-secondary text-sm font-medium px-3 py-1 rounded-full">成都</span>
+              <a href="#" class="text-primary font-medium hover:underline">预约报名</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+          <div class="relative">
+            <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/43a205470308448fb140b7103a38bc30~tplv-a9rns2rl98-image.image?rcl=20250805154516217E79F24A85EB4C0AB9&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984719&amp;x-signature=PHwfKUmat%2Bk09zX5kxEIL9Vc0PQ%3D" alt="航空职业发展论坛" class="w-full h-48 object-cover">
+            <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">线上活动</div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center text-gray-500 text-sm mb-3">
+              <span><i class="fa fa-calendar mr-1"></i> 2025-07-30</span>
+              <span class="mx-3">•</span>
+              <span><i class="fa fa-clock-o mr-1"></i> 19:00-21:00</span>
+            </div>
+            <h3 class="text-xl font-bold text-neutral-dark mb-3">航空科学课堂：未来航空人才培养</h3>
+            <p class="text-gray-600 mb-4 line-clamp-2">飞行员导师讲解飞行原理与安全知识，给小朋友分享航空经历，对航空知识进行科学普及。</p>
+            <div class="flex justify-between items-center">
+              <span class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full">线上直播</span>
+              <a href="#" class="text-primary font-medium hover:underline">预约报名</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+     <!-- 活动日历 -->
+<section id="events" class="py-20 px-6 md:px-12 bg-white">
+  <div class="container mx-auto">
+    <div class="text-center mb-16">
+      <span class="text-primary font-semibold">活动日历</span>
+      <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">2025年全年活动安排</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">参与我们的线下活动、讲座和一日营活动，与行业专家和兴趣相投的朋友交流学习。</p>
+    </div>
+    
+    <!-- 活动分类标签 -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="px-6 py-2 rounded-full bg-primary text-white shadow-md">全部活动</button>
+      <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">开疆拓土</button>
+      <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">保驾护航</button>
+      <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">铭记历史</button>
+      <button class="px-6 py-2 rounded-full bg-white text-neutral-dark hover:bg-gray-50 shadow-sm transition-colors">盛世华诞</button>
+    </div>
+    
+    <!-- 活动卡片 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+        <div class="relative">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3fda00590e0a4c3281cb505ac4844f80~tplv-a9rns2rl98-image.image?rcl=2025080515465152D72C50DDE3316B4891&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984811&amp;x-signature=UnfXa3nYK%2F3I%2FjX8kRPXlS3YpsQ%3D" alt="C919技术讲座" class="w-full h-48 object-cover">
+          <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">开疆拓土</div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-3">
+            <span><i class="fa fa-calendar mr-1"></i> 2025-03-15</span>
+            <span class="mx-3">•</span>
+            <span><i class="fa fa-clock-o mr-1"></i> 14:00-16:00</span>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-dark mb-3">开疆拓土</h3>
+          <p class="text-gray-600 mb-4 line-clamp-2">1月，京沪航线开通，助力春运。&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2月，新加坡国外首飞。&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;3月，上海-西安定期航线</p>
+          <div class="flex justify-between items-center">
+            <span class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full"></span>
+            <a href="#" class="text-primary font-medium hover:underline">直播回放</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+        <div class="relative">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/bd234eda97414932847403f2c17e8c1e~tplv-a9rns2rl98-image.image?rcl=202508051547007272EDB083A50CB3FC05&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984821&amp;x-signature=KeSDtBHHxC8i6FfhlbpFq3Pe%2BCw%3D" alt="青少年航空体验营" class="w-full h-48 object-cover">
+          <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-semibold px-3 py-1 rounded-full">保驾护航</div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-3">
+            <span><i class="fa fa-calendar mr-1"></i> 2025-05-01至05-03</span>
+            <span class="mx-3">•</span>
+            <span><i class="fa fa-clock-o mr-1"></i> 全天</span>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-dark mb-3">保驾护航</h3>
+          <p class="text-gray-600 mb-4 line-clamp-2">4.22C919助力世界地球日&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;5.15致敬英雄机长&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 6.29助力世界科普日</p>
+          <div class="flex justify-between items-center">
+            <span class="bg-secondary/10 text-secondary text-sm font-medium px-3 py-1 rounded-full"></span>
+            <a href="#" class="text-primary font-medium hover:underline">直播回放</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+        <div class="relative">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/e5a5b86935d9458e9cc9d04a7fc75bd5~tplv-a9rns2rl98-image.image?rcl=2025080515474003B9BEF840FA4305591F&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984861&amp;x-signature=luxeuWTc8Tg27GH4wewHPwWTv%2B0%3D" alt="航空职业发展论坛" class="w-full h-48 object-cover">
+          <div class="absolute top-4 left-4 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">铭记历史</div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-3">
+            <span><i class="fa fa-calendar mr-1"></i> 2025-07-30</span>
+            <span class="mx-3">•</span>
+            <span><i class="fa fa-clock-o mr-1"></i> 19:00-21:00</span>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-dark mb-3">铭记历史</h3>
+          <p class="text-gray-600 mb-4 line-clamp-2">7月C919庆祝香港回归&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;8月C919科学实验&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;9月双流起飞，首飞拉萨</p>
+          <div class="flex justify-between items-center">
+            <span class="bg-primary/10 text-primary text-sm font-medium px-3 py-1 rounded-full"></span>
+            <a href="#" class="text-primary font-medium hover:underline">预约直播</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="bg-neutral rounded-xl overflow-hidden shadow-md card-hover">
+        <div class="relative">
+          <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/b270f1bd8afa4ee99f24525977057597~tplv-a9rns2rl98-image.image?rcl=20250805154749BD9C6AE19D776D095BCB&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984870&amp;x-signature=hChxS3qoRsR8WaMS91Pov9pzMB4%3D" alt="航空电子课程" class="w-full h-48 object-cover">
+          <div class="absolute top-4 left-4 bg-secondary text-white text-xs font-semibold px-3 py-1 rounded-full">盛世华诞</div>
+        </div>
+        <div class="p-6">
+          <div class="flex items-center text-gray-500 text-sm mb-3">
+            <span><i class="fa fa-calendar mr-1"></i> 2025-09-10至09-15</span>
+            <span class="mx-3">•</span>
+            <span><i class="fa fa-clock-o mr-1"></i> 全天</span>
+          </div>
+          <h3 class="text-xl font-bold text-neutral-dark mb-3">盛世华诞</h3>
+          <p class="text-gray-600 mb-4 line-clamp-2">10月庆祖国76周年华诞&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 11月纪念中国民航局成立76周年&nbsp; &nbsp; &nbsp; &nbsp; 12月国际民用航空公约</p>
+          <div class="flex justify-between items-center">
+            <span class="bg-secondary/10 text-secondary text-sm font-medium px-3 py-1 rounded-full"></span>
+                 
+              
+            
+          
+        </div>
+      </div>
+    </div>
+  </div></div></section>
+
+    <!-- 学员评价 -->
+  <section class="py-20 px-6 md:px-12 bg-neutral">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">学员心声</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">他们的学习体验</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">听听我们的学员如何评价中国商飞教育的课程和服务，了解他们的学习收获和成长。</p>
+      </div>
+      
+      <!-- 评价轮播 -->
+      <div class="relative">
+        <div class="overflow-hidden">
+          <div class="flex transition-transform duration-500 ease-in-out" id="testimonials-container">
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+              <div class="bg-white rounded-xl p-8 shadow-md h-full">
+                <div class="flex items-center mb-6">
+                  <img src="https://picsum.photos/id/1012/100/100" alt="学员照片" class="w-16 h-16 rounded-full mr-4">
+                  <div>
+                    <h4 class="font-bold text-neutral-dark">张小明</h4>
+                    <p class="text-gray-500 text-sm">模拟飞行一日营体验学生</p>
+                  </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic">"参加了中国商飞教育的C919模拟飞行一日营活动，收获颇丰。专业的模拟器和教练团队让我仿佛置身于真实的驾驶舱，对飞机操作有了更深入的理解。"</p>
+              </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+              <div class="bg-white rounded-xl p-8 shadow-md h-full">
+                <div class="flex items-center mb-6">
+                  <img src="https://picsum.photos/id/1027/100/100" alt="学员照片" class="w-16 h-16 rounded-full mr-4">
+                  <div>
+                    <h4 class="font-bold text-neutral-dark">李华</h4>
+                    <p class="text-gray-500 text-sm">C919模拟飞行体验学生</p>
+                  </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-half-o"></i>
+                </div>
+                <p class="text-gray-600 italic">“课程内容很丰富，有趣。在这里我结识到了很多对航空热爱的小伙伴，大家在快乐的学习中，了解了C919的相关知识。”</p>
+              </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+              <div class="bg-white rounded-xl p-8 shadow-md h-full">
+                <div class="flex items-center mb-6">
+                  <img src="https://picsum.photos/id/1062/100/100" alt="学员照片" class="w-16 h-16 rounded-full mr-4">
+                  <div>
+                    <h4 class="font-bold text-neutral-dark">王芳</h4>
+                    <p class="text-gray-500 text-sm">航空爱好者</p>
+                  </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic">"一直对航空感兴趣，参加了中国商飞教育的航空概论课程。课程内容丰富有趣，从飞机原理到航空历史都有涉及，讲师讲解生动易懂，让我对航空有了更全面的认识。"</p>
+              </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-4">
+              <div class="bg-white rounded-xl p-8 shadow-md h-full">
+                <div class="flex items-center mb-6">
+                  <img src="https://picsum.photos/id/1074/100/100" alt="学员照片" class="w-16 h-16 rounded-full mr-4">
+                  <div>
+                    <h4 class="font-bold text-neutral-dark">刘强</h4>
+                    <p class="text-gray-500 text-sm">飞行学员</p>
+                  </div>
+                </div>
+                <div class="flex text-yellow-400 mb-4">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star-o"></i>
+                </div>
+                <p class="text-gray-600 italic">"参加了高级飞行技术课程，课程内容非常专业，对我的飞行技能提升很大。模拟器训练和理论教学相结合的方式很有效，让我能够更好地理解和应用飞行知识。"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 轮播控制按钮 -->
+        <button id="prev-testimonial" class="absolute top-1/2 left-0 -translate-y-1/2 bg-white shadow-md w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-gray-50">
+          <i class="fa fa-chevron-left text-primary"></i>
+        </button>
+        <button id="next-testimonial" class="absolute top-1/2 right-0 -translate-y-1/2 bg-white shadow-md w-10 h-10 rounded-full flex items-center justify-center z-10 hover:bg-gray-50">
+          <i class="fa fa-chevron-right text-primary"></i>
+        </button>
+      </div>
+      
+      <!-- 轮播指示器 --><!-- 轮播指示器 -->
+      <div class="flex justify-center mt-8 space-x-2">
+        <button class="w-3 h-3 rounded-full bg-primary" data-index="0"></button>
+        <button class="w-3 h-3 rounded-full bg-gray-300" data-index="1"></button>
+        <button class="w-3 h-3 rounded-full bg-gray-300" data-index="2"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 数据统计 -->
+  <section class="py-20 px-6 md:px-12 bg-gradient-blue text-white">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <div class="text-4xl md:text-5xl font-bold mb-4" id="counter-students">10,000+</div>
+          <p class="text-white/80">注册学员</p>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold mb-4" id="counter-courses">50+</div>
+          <p class="text-white/80">专业课程/合作企业</p>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold mb-4" id="counter-instructors">100+</div>
+          <p class="text-white/80">行业专家</p>
+        </div>
+        <div>
+          <div class="text-4xl md:text-5xl font-bold mb-4" id="counter-satisfaction">98%</div>
+          <p class="text-white/80">满意度</p>
+        </div>
+      </div>
+    </div>
+  </section>、
+
+    <!-- 英雄区 -->
+      
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C919大飞机研学活动 - 探索国产大飞机的奥秘</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#165DFF',
+            secondary: '#FF7D00',
+            accent: '#00B42A',
+            neutral: '#F5F7FA',
+            'neutral-dark': '#1D2129',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          animation: {
+            'float': 'float 3s ease-in-out infinite',
+            'bounce-slow': 'bounce 3s infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      .text-shadow-lg {
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+      .bg-gradient-blue {
+        background: linear-gradient(135deg, #165DFF 0%, #00B42A 100%);
+      }
+      .bg-gradient-to-r {
+        background: linear-gradient(to right, var(--tw-gradient-stops));
+      }
+    }
+  </style>
+
+
+  <!-- 导航栏 -->
+  <nav id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/95 shadow-sm">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center">
+          <a href="#" class="text-2xl font-bold text-primary flex items-center">
+            <i class="fa fa-plane mr-2"></i>
+            <span>C919大飞机研学</span>
+          </a>
+        </div>
+        
+    <!-- 桌面导航 -->
+    <div class="hidden md:flex items-center space-x-8">
+    <a href="#C919大飞机" class="text-neutral-dark hover:text-primary transition-colors">我为大飞机代言</a>
+    <a href="#home" class="text-neutral-dark hover:text-primary transition-colors">首页</a>
+    <a href="#about" class="text-neutral-dark hover:text-primary transition-colors">研学信息</a>
+    <a href="#exhibition" class="text-neutral-dark hover:text-primary transition-colors">展区设施</a>
+    <a href="#schedule" class="text-neutral-dark hover:text-primary transition-colors">活动流程</a>
+    <a href="#knowledge" class="text-neutral-dark hover:text-primary transition-colors">核心知识</a>
+    <a href="#courses" class="text-neutral-dark hover:text-primary transition-colors">课程体系</a>
+    <a href="#apply" class="text-neutral-dark hover:text-primary transition-colors">立即报名</a>
+        </div>
+        
+    <!-- 移动端菜单按钮 -->
+    <div class="md:hidden">
+          <button id="menu-toggle" class="text-neutral-dark hover:text-primary focus:outline-none">
+            <i class="fa fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+<!-- 移动端导航菜单 -->
+<div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+<div class="container mx-auto px-4 py-4 flex flex-col space-y-4">
+  <a href="#C919大飞机" class="text-neutral-dark hover:text-primary transition-colors">我为大飞机代言</a>
+  <a href="#home" class="text-neutral-dark hover:text-primary transition-colors py-2">首页</a>
+  <a href="#about" class="text-neutral-dark hover:text-primary transition-colors py-2">研学信息</a>
+  <a href="#exhibition" class="text-neutral-dark hover:text-primary transition-colors py-2">展区设施</a>
+  <a href="#schedule" class="text-neutral-dark hover:text-primary transition-colors py-2">活动流程</a>
+  <a href="#knowledge" class="text-neutral-dark hover:text-primary transition-colors py-2">核心知识</a>
+  <a href="#courses" class="text-neutral-dark hover:text-primary transition-colors py-2">课程体系</a>
+  <a href="#apply" class="text-neutral-dark hover:text-primary transition-colors py-2">立即报名</a>
+      </div>
+    </div>
+  </nav>
+
+<!-- 英雄区 -->
+<section id="C919大飞机" class="py-20 bg-blue">
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+          <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-accent/70 z-10"></div>
+          <img src="https://picsum.photos/id/1033/1920/1080" alt="C919大飞机" class="w-full h-full object-cover">
+      </div>
+      <div class="container mx-auto px-4 z-20 text-center">
+          <h1 class="text-[clamp(2.5rem,8vw,5rem)] font-bold text-white text-shadow-lg mb-6 animate-float">
+              我为国产大飞机代言
+          </h1>
+          <p class="text-[clamp(1.2rem,3vw,1.8rem)] text-white text-shadow mb-10 max-w-3xl mx-auto">探索大飞机C919的奥秘，开启航空科技研学之旅</p>
+          <a href="#apply" class="inline-block bg-white text-primary hover:bg-primary hover:text-white transition-all duration-300 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+              立即报名 <i class="fa fa-arrow-right ml-2"></i>
+          </a>
+      </div>
+      <div class="absolute bottom-10 left-0 right-0 text-center z-20">
+          <a href="#about" class="text-white animate-bounce inline-block">
+              <i class="fa fa-angle-down text-3xl"></i>
+          </a>
+      </div>
+    </header>
+
+    <!-- 研学基本信息 -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-primary mb-4">研学基本信息</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-dark/80 max-w-3xl mx-auto">
+                    开启一场充满乐趣与挑战的国产大飞机C919研学之旅，激发青少年对航空科技的热爱与探索精神
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="bg-neutral p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                            <i class="fa fa-info-circle text-accent mr-3"></i> 研学主题
+                        </h3>
+                        <p class="text-dark/80 mb-6 text-lg">
+                            航空爱国主题：我为国产大飞机代言
+                        </p>
+                        
+                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                            <i class="fa fa-map-marker text-accent mr-3"></i> 研学基地
+                        </h3>
+                        <p class="text-dark/80 mb-6 text-lg">
+                            大飞机四川科普基地（成都双流区，总面积7000m²）
+                        </p>
+                        
+                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                            <i class="fa fa-users text-accent mr-3"></i> 研学对象
+                        </h3>
+                        <p class="text-dark/80 mb-6 text-lg">
+                            5-22岁（分幼儿，小学，初中职业研学）
+                        </p>
+                        
+                        <h3 class="text-2xl font-bold text-primary mb-6 flex items-center">
+                            <i class="fa fa-users text-accent mr-3"></i> 研学规模
+                        </h3>
+                        <p class="text-dark/80 mb-6 text-lg">
+                            80-100人/组，1天
+                        </p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 relative">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/03f35ab221e440979b8e456f6c740cd6~tplv-a9rns2rl98-image.image?rcl=20250805152336359944F6C21A8CAB6A74&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754983416&amp;x-signature=mV2EQqErZyzWt96p2uuKhD8%2B118%3D" alt="C919研学活动" class="rounded-2xl shadow-xl w-full h-auto">
+                    <div class="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-xl shadow-lg hidden md:block">
+                        <p class="text-4xl font-bold">1</p>
+                        <p class="text-lg">天</p>
+                    </div>
+                    <div class="absolute -top-6 -right-6 bg-accent text-white p-6 rounded-xl shadow-lg hidden md:block">
+                        <p class="text-4xl font-bold">5-22</p>
+                        <p class="text-lg">岁</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心展区与设施 -->
+    <section id="exhibition" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-primary mb-4">核心展区与设施</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-dark/80 max-w-3xl mx-auto">
+                    全方位体验航空科技魅力，从理论学习到实践操作，一站式满足研学需求
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 基础展区 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/f137de6db9e14470b1877575acd3cc09~tplv-a9rns2rl98-image.image?rcl=20250805154830217E79F24A85EB4C829E&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984911&amp;x-signature=n%2Bl%2BkJJrTOn54%2BlAxEl9LveNZ0U%3D" alt="基础展区" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-4 flex items-center">
+                            <i class="fa fa-cubes text-accent mr-3"></i> 基础展区
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">企业文化区：了解中国商飞的发展历程与企业文化</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">航空科普区：学习飞机的基本构造、飞行原理等知识</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">生产实景区：体验大飞机的生产制造过程</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 体验区 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/5752a7b89bbe40a7b4dc1eb01e81291a~tplv-a9rns2rl98-image.image?rcl=202508051548416347C29AF2ACB00682A7&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984922&amp;x-signature=Q7OGsfyRzXOSZOvAN1ya3%2Fz003M%3D" alt="体验区" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-4 flex items-center">
+                            <i class="fa fa-gamepad text-accent mr-3"></i> 体验区
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">互动体验区：模拟塔台指挥，体验飞行员的工作</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">职业体验区：客舱播报、空乘服务等职业体验</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 配套设施 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/c66c95be28a8449eae8a9a9a81822c9b~tplv-a9rns2rl98-image.image?rcl=2025080515485282E295D3D9E600ABEEE0&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754984933&amp;x-signature=ymSNM6jdlgLw9KzpOq09Ioi6%2Fiw%3D" alt="配套设施" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-primary mb-4 flex items-center">
+                            <i class="fa fa-building text-accent mr-3"></i> 配套设施
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">科普教学区：专业的航空知识课堂</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">实践教学区：动手操作与实践的场所</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-accent mt-1 mr-2"></i>
+                                <span class="text-dark/80">餐饮住宿：安全卫生的职工餐厅与舒适的住宿环境</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 研学活动流程 -->
+    <section id="schedule" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-primary mb-4">研学活动流程</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-dark/80 max-w-3xl mx-auto">
+                    一天的精彩研学之旅，从开营到结营，每一个环节都充满惊喜与收获
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- 时间线 -->
+                <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-accent transform md:-translate-x-1/2"></div>
+
+                <!-- 时间点 -->
+                <div class="space-y-12 relative">
+                    <!-- 开营仪式 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">开营仪式</h3>
+                                <p class="text-dark/80">安全须知、研学活动介绍、团队组建与合影留念</p>
+                            </div>
+                        </div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            9:30
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 hidden md:block"></div>
+                    </div>
+
+                    <!-- 立项之梦 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            10:00
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">立项之梦</h3>
+                                <p class="text-dark/80">航空文化课、C919诞生之路，了解国产大飞机的研发历程与技术突破</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 精工匠心 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">精工匠心</h3>
+                                <p class="text-dark/80">模型制作、航空设计课，培养动手能力与创新思维</p>
+                            </div>
+                        </div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            11:00
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 hidden md:block"></div>
+                    </div>
+
+                    <!-- 职工午餐 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            12:00
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">职工午餐</h3>
+                                <p class="text-dark/80">在职工餐厅享用营养午餐，体验航空工作者的日常</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 无畏试飞 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">无畏试飞</h3>
+                                <p class="text-dark/80">航空运动课、实验课，通过模拟飞行与实验了解飞行原理</p>
+                            </div>
+                        </div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            13:30
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 hidden md:block"></div>
+                    </div>
+
+                    <!-- 翱翔蓝天 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            14:30
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-2 md:order-3 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">翱翔蓝天</h3>
+                                <p class="text-dark/80">航空观察课、职业体验，了解航空相关职业与未来发展方向</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 结营仪式 -->
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-4 md:mt-0">
+                            <div class="bg-neutral p-6 rounded-xl shadow-lg">
+                                <h3 class="text-xl font-bold text-primary mb-3">结营仪式</h3>
+                                <p class="text-dark/80">总结分享、优秀学员奖励、合影留念，为研学之旅画上圆满句号</p>
+                            </div>
+                        </div>
+                        <div class="z-10 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center text-xl font-bold mb-4 md:mb-0">
+                            15:30
+                        </div>
+                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 hidden md:block"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心知识与技能 -->
+    <section id="knowledge" class="py-20 bg-neutral">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-primary mb-4">核心知识与技能</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-dark/80 max-w-3xl mx-auto">
+                    了解中国商飞的三大飞机型号，掌握航空基础知识，培养科技创新能力
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- C909 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="bg-primary p-4 text-white text-center">
+                        <h3 class="text-xl font-bold">C909</h3>
+                        <p class="text-white/80">支线客机</p>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/41ce28bc624f4fa88a8d56b85f70c970~tplv-a9rns2rl98-image.image?rcl=20250805155020BD9C6AE19D776D09906B&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985020&amp;x-signature=2xjwuLllnWuE7l4g4EaykwxAuCY%3D" alt="C909支线客机" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <span class="bg-primary/10 text-primary font-bold py-1 px-4 rounded-full">78-79座</span>
+                        </div>
+                        <p class="text-dark/80">
+                            C909是中国商飞研制的一款先进支线客机，适合中短程航线，具有低油耗、高可靠性和舒适性等特点，能够满足不同客户的需求。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- C919 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300 scale-105 z-10">
+                    <div class="bg-accent p-4 text-white text-center">
+                        <h3 class="text-xl font-bold">C919</h3>
+                        <p class="text-white/80">干线客机</p>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/3086ad659ec84b59944817a6c2f4aed4~tplv-a9rns2rl98-image.image?rcl=20250805155029065A0440105AA18F24F0&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985029&amp;x-signature=AGvBADgGcNiZoycooUuUY5In0cE%3D" alt="C919干线客机" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <span class="bg-accent/10 text-accent font-bold py-1 px-4 rounded-full">158-192座</span>
+                        </div>
+                        <p class="text-dark/80">
+                            C919是中国首款按照最新国际适航标准研制的干线民用飞机，具有完全自主知识产权，填补了国内大型客机的空白，标志着我国航空工业取得了重大突破。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- C929 -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="bg-primary p-4 text-white text-center">
+                        <h3 class="text-xl font-bold">C929</h3>
+                        <p class="text-white/80">远程宽体客机</p>
+                    </div>
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/82ba4cdb9efd48fcae4d322c12388790~tplv-a9rns2rl98-image.image?rcl=2025080515503846EC516FCB928B025578&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1754985039&amp;x-signature=9NiiWjVn8c%2BcFgafUBOE48M3wD8%3D" alt="C929远程宽体客机" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-center mb-4">
+                            <span class="bg-primary/10 text-primary font-bold py-1 px-4 rounded-full">280座</span>
+                        </div>
+                        <p class="text-dark/80">
+                            C929是中国商飞与俄罗斯联合研制的远程宽体客机，采用双通道客舱布局，航程更远，能够满足国际远程航线的需求，提升我国在国际航空市场的竞争力。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-8 rounded-2xl shadow-lg">
+                <h3 class="text-2xl font-bold text-primary mb-6 text-center">研学收获</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-book text-3xl text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-primary mb-3">航空知识</h4>
+                        <p class="text-dark/80">掌握飞机的基本构造、飞行原理、航空发展史等基础知识</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-lightbulb-o text-3xl text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-primary mb-3">创新思维</h4>
+                        <p class="text-dark/80">通过模型制作、设计课程等培养创新能力和实践操作能力</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fa fa-heart text-3xl text-primary"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-primary mb-3">爱国情怀</h4>
+                        <p class="text-dark/80">了解国产大飞机的发展历程，增强民族自豪感和爱国情怀</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 报名区域 -->
+    <section id="apply" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-[clamp(1.8rem,5vw,3rem)] font-bold text-primary mb-4">立即报名</h2>
+                <div class="w-24 h-1 bg-accent mx-auto mb-6"></div>
+                <p class="text-lg text-dark/80 max-w-3xl mx-auto">
+                    开启您的航空科技研学之旅，探索国产大飞机的奥秘
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <form id="application-form" class="bg-neutral p-8 rounded-2xl shadow-lg">
+                        <div class="mb-6">
+                            <label for="name" class="block text-dark font-medium mb-2">姓名</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入您的姓名" required="">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="age" class="block text-dark font-medium mb-2">年龄</label>
+                            <input type="number" id="age" name="age" min="5" max="22" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入您的年龄" required="">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="phone" class="block text-dark font-medium mb-2">联系电话</label>
+                            <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入您的联系电话" required="">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="school" class="block text-dark font-medium mb-2">学校/单位</label>
+                            <input type="text" id="school" name="school" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="请输入您的学校或单位名称" required="">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="group" class="block text-dark font-medium mb-2">研学组别</label>
+                            <select id="group" name="group" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" required="">
+                                <option value="">请选择研学组别</option>
+                                <option value="幼儿组">幼儿组(5-6岁)</option>
+                                <option value="小学组">小学组(7-12岁)</option>
+                                <option value="初中组">初中组(13-15岁)</option>
+                                <option value="高中组">高中组(16-18岁)</option>
+                                <option value="职业组">职业组(19-22岁)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-dark font-medium mb-2">备注信息</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all" placeholder="如有特殊需求，请在此说明"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center">
+                            <i class="fa fa-paper-plane mr-2"></i> 提交报名
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="order-1 md:order-2">
+                    <div class="bg-primary p-8 rounded-2xl shadow-lg text-white">
+                        <h3 class="text-2xl font-bold mb-6">研学详情</h3>
+                        
+                        <div class="mb-6">
+                            <div class="flex items-start mb-4">
+                                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-calendar text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">活动时间</h4>
+                                    <p class="text-white/80">每周六、周日及法定节假日</p>
+                                    <p class="text-white/80">9:30-15:30（全天）</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start mb-4">
+                                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-map-marker text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-1">活动地点</h4>
+                                    <p class="text-white/80">大飞机四川科普基地</p>
+                                    <p class="text-white/80">成都市双流区航空港经济开发区</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fa fa-money text-xl"></i>
+                                </div>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-white/10 p-6 rounded-xl">
+                            <h4 class="text-xl font-bold mb-3">报名须知</h4>
+                            <ul class="space-y-2 text-white/90">
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle mt-1 mr-2"></i>
+                                    <span>请穿着舒适的运动服装和鞋子</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle mt-1 mr-2"></i>
+                                    <span>请携带学生证或有效身份证件</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fa fa-check-circle mt-1 mr-2"></i>
+                                    <span>活动期间请遵守基地规定，听从工作人员安排</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+  <!-- 联系我们 -->
+  <section id="contact" class="py-20 px-6 md:px-12 bg-white">
+    <div class="container mx-auto">
+      <div class="text-center mb-16">
+        <span class="text-primary font-semibold">联系我们</span>
+        <h2 class="text-[clamp(2rem,4vw,3rem)] font-bold text-neutral-dark mt-2 mb-4">与我们取得联系</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">如有任何问题或建议，欢迎随时与我们联系，我们将竭诚为您服务。</p>
+      </div>
+      
+      <div class="flex flex-col md:flex-row gap-12">
+        <div class="md:w-1/2">
+          <form class="bg-neutral rounded-xl p-8 shadow-md">
+            <h3 class="text-2xl font-bold text-neutral-dark mb-6">发送消息</h3>
+            <div class="space-y-6">
+              <div>
+                <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入您的姓名">
+              </div>
+              
+              <div>
+                <label for="email" class="block text-gray-700 font-medium mb-2">邮箱</label>
+                <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入您的邮箱">
+              </div>
+              
+              <div>
+                <label for="subject" class="block text-gray-700 font-medium mb-2">主题</label>
+                <input type="text" id="subject" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入消息主题">
+              </div>
+              
+              <div>
+                <label for="message" class="block text-gray-700 font-medium mb-2">消息内容</label>
+                <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="请输入您的消息内容"></textarea>
+              </div>
+              
+              <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-lg transition-colors shadow-md hover:shadow-lg">
+                发送消息
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="md:w-1/2">
+          <div class="bg-neutral rounded-xl p-8 shadow-md mb-8">
+            <h3 class="text-2xl font-bold text-neutral-dark mb-6">联系方式</h3>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-map-marker text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-neutral-dark mb-1">地址</h4>
+                  <p class="text-gray-600">导航“四川大飞机科普基地”</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-phone text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-neutral-dark mb-1">电话</h4>
+                  <p class="text-gray-600">400-888-9999</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-envelope text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-neutral-dark mb-1">邮箱</h4>
+                  <p class="text-gray-600">info@airht.cn</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                  <i class="fa fa-clock-o text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-semibold text-neutral-dark mb-1">工作时间</h4>
+                  <p class="text-gray-600">周一至周五: 9:00 - 18:00</p>
+                  <p class="text-gray-600">周六至周日: 10:00 - 16:00</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mt-8">
+              <h4 class="font-semibold text-neutral-dark mb-4">关注我们</h4>
+              <div class="flex space-x-4">
+                <a href="#" class="w-10 h-10 bg-primary/10 hover:bg-primary/20 text-primary rounded-full flex items-center justify-center transition-colors">
+                  <i class="fa fa-weixin"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-primary/10 hover:bg-primary/20 text-primary rounded-full flex items-center justify-center transition-colors">
+                  <i class="fa fa-weibo"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-primary/10 hover:bg-primary/20 text-primary rounded-full flex items-center justify-center transition-colors">
+                  <i class="fa fa-youtube-play"></i>
+                </a>
+                <a href="#" class="w-10 h-10 bg-primary/10 hover:bg-primary/20 text-primary rounded-full flex items-center justify-center transition-colors">
+                  <i class="fa fa-linkedin"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-neutral rounded-xl p-8 shadow-md">
+            <h3 class="text-2xl font-bold text-neutral-dark mb-6">订阅我们</h3>
+            <p class="text-gray-600 mb-4">订阅我们的电子邮件，获取最新的课程信息和活动通知。</p>
+            <div class="flex">
+              <input type="email" placeholder="请输入您的邮箱" class="flex-grow px-4 py-3 rounded-l-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary/50">
+              <button class="bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-r-lg transition-colors">
+                订阅
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="bg-neutral-dark text-white pt-16 pb-8 px-6 md:px-12">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+              <i class="fa fa-rocket text-primary text-xl"></i>
+            </div>
+            <span class="text-xl font-bold text-white">中国商飞教育</span>
+          </div>
+          <p class="text-gray-400 mb-6">中国商飞教育致力于传播航空航天知识，传承红色基因，培养未来航空人才。</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-weixin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-weibo text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-youtube-play text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors">
+              <i class="fa fa-linkedin text-xl"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-6">快速链接</h4>
+          <ul class="space-y-3">
+            <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">关于C919</a></li>
+            <li><a href="#courses" class="text-gray-400 hover:text-white transition-colors">课程体系</a></li>
+            <li><a href="#simulation" class="text-gray-400 hover:text-white transition-colors">模拟飞行体验</a></li>
+            <li><a href="#blog" class="text-gray-400 hover:text-white transition-colors">航空知识</a></li>
+            <li><a href="#events" class="text-gray-400 hover:text-white transition-colors">活动日历</a></li>
+            <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-6">课程分类</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">航空理论</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">模拟体验</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">航模制作</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">一日营活动</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">创意课程</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">赛事培训</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">青少年课程</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="text-lg font-semibold mb-6">联系我们</h4>
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <i class="fa fa-map-marker text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">导航“大飞机四川科普基地”</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">400-888-9999</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">info@airht.cn</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">周一至周五: 9:00 - 18:00</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fa fa-clock-o text-primary mt-1 mr-3"></i>
+              <span class="text-gray-400">周六至周日: 10:00 - 16:00</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 中国商飞教育. 保留所有权利.</p>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">隐私政策</a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">使用条款</a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">Cookie政策</a>
+            <a href="#" class="text-gray-400 hover:text-white transition-colors text-sm">网站地图</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 返回顶部按钮 -->
+  <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg z-50 opacity-0 invisible transition-all duration-300 hover:bg-primary/90">
+    <i class="fa fa-chevron-up"></i>
+  </button>
+
+  <!-- JavaScript -->
+  <script>
+    // 导航栏滚动效果
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-md');
+        navbar.classList.remove('bg-white/90');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-md');
+        navbar.classList.add('bg-white/90');
+      }
+    });
+    
+    // 移动端菜单切换
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+    
+    // 平滑滚动
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // 关闭移动端菜单
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+          }
+        }
+      });
+    });
+    
+    // 返回顶部按钮
+    const backToTopButton = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        backToTopButton.classList.remove('opacity-0', 'invisible');
+        backToTopButton.classList.add('opacity-100', 'visible');
+      } else {
+        backToTopButton.classList.add('opacity-0', 'invisible');
+        backToTopButton.classList.remove('opacity-100', 'visible');
+      }
+    });
+    
+    backToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+    
+    // 学员评价轮播
+    const testimonialContainer = document.getElementById('testimonials-container');
+    const prevButton = document.getElementById('prev-testimonial');
+    const nextButton = document.getElementById('next-testimonial');
+    const indicators = document.querySelectorAll('[data-index]');
+    let currentIndex = 0;
+    let slideWidth = 100;
+    let slidesPerView = 1;
+    
+    function updateSlideWidth() {
+      if (window.innerWidth >= 1024) {
+        slidesPerView = 3;
+      } else if (window.innerWidth >= 768) {
+        slidesPerView = 2;
+      } else {
+        slidesPerView = 1;
+      }
+      slideWidth = 100 / slidesPerView;
+      updateSlider();
+    }
+    
+    function updateSlider() {
+      testimonialContainer.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
+      
+      // 更新指示器
+      indicators.forEach((indicator, index) => {
+        if (index === Math.floor(currentIndex / slidesPerView)) {
+          indicator.classList.remove('bg-gray-300');
+          indicator.classList.add('bg-primary');
+        } else {
+          indicator.classList.remove('bg-primary');
+          indicator.classList.add('bg-gray-300');
+        }
+      });
+    }
+    
+    prevButton.addEventListener('click', () => {
+      currentIndex = Math.max(currentIndex - slidesPerView, 0);
+      updateSlider();
+    });
+    
+    nextButton.addEventListener('click', () => {
+      const maxIndex = testimonialContainer.children.length - slidesPerView;
+      currentIndex = Math.min(currentIndex + slidesPerView, maxIndex);
+      updateSlider();
+    });
+    
+    indicators.forEach(indicator => {
+      indicator.addEventListener('click', () => {
+        const index = parseInt(indicator.getAttribute('data-index'));
+        currentIndex = index * slidesPerView;
+        updateSlider();
+      });
+    });
+    
+    window.addEventListener('resize', updateSlideWidth);
+    updateSlideWidth();
+    
+    // 数字计数器动画
+    function animateCounter(elementId, targetValue, duration = 2000) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+      
+      let startValue = 0;
+      const increment = targetValue / (duration / 16);
+      let currentValue = startValue;
+      
+      const timer = setInterval(() => {
+        currentValue += increment;
+        if (currentValue >= targetValue) {
+          currentValue = targetValue;
+          clearInterval(timer);
+        }
+        
+        // 格式化显示
+        if (elementId === 'counter-students') {
+          element.textContent = Math.floor(currentValue).toLocaleString() + '+';
+        } else if (elementId === 'counter-courses') {
+          element.textContent = Math.floor(currentValue).toLocaleString() + '+';
+        } else if (elementId === 'counter-instructors') {
+          element.textContent = Math.floor(currentValue).toLocaleString() + '+';
+        } else if (elementId === 'counter-satisfaction') {
+          element.textContent = Math.floor(currentValue).toLocaleString() + '%';
+        }
+      }, 16);
+    }
+    
+    // 监听元素是否进入视口
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          // 开始计数器动画
+          animateCounter('counter-students', 10000);
+          animateCounter('counter-courses', 50);
+          animateCounter('counter-instructors', 100);
+          animateCounter('counter-satisfaction', 98);
+          
+          // 只触发一次
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    // 观察包含计数器的元素
+    const statsSection = document.querySelector('#counter-students').closest('section');
+    observer.observe(statsSection);
+  </script>
+
+    </section></div></section></body></html>
